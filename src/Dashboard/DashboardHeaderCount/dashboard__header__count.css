@@ -1,0 +1,30 @@
+.border-left-primary {
+  border-left: 0.25rem solid #4e73df !important;
+}
+.text-gray-800 {
+  color: #5a5c69 !important;
+}
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+.text-xs {
+  font-size: 0.7rem;
+}
+.text-primary {
+  color: #4e73df !important;
+}
+
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+
+.text-gray-300 {
+  color: #dddfeb !important;
+}
+.fa {
+  font-weight: 900;
+}
+.dashboard__container .card-header {
+  background-color: white;
+  padding: 1%;
+}

@@ -1,0 +1,22 @@
+body {
+  background-color: #e4e5e6 !important;
+}
+.add__user__container {
+  background-color: white;
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+.fi-color {
+  color: blue;
+}
+.add__user__container .nav-link:hover {
+  cursor: pointer;
+  border: none;
+}
+.add__user__container .nav-link.active {
+  border: none !important;
+  border-bottom: 2px solid blue !important;
+}
+.add__user__container .nav-tabs {
+  border: none !important;
+}

@@ -1,0 +1,28 @@
+{
+  "name": "blinkin-admin-panel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./build/index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.3.0",
+    "style-loader": "^1.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "react": "^16.8.6",
+    "reactstrap": "^8.4.1",
+    "react-select": "^3.1.0",
+    "react-dates": "21.8.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
