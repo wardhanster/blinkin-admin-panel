@@ -16,17 +16,19 @@ export default function UsersWithNoCalls({ fetchUserData }) {
   const [data, setData] = useState(null);
   const [pageno, setPageno] = useState(1);
   const [activeDays, setActiveDays] = useState(0);
-  const { loading, response, error } = useUsersData(
+  const [loadingBtn, setLoadingBtn] = useState(false);
+
+  const { loading, response, error, downloadResponse } = useUsersData(
     fetchUserData,
     "userswithnocalls",
     activeDays,
-    pageno
+    pageno,
+    false
   );
 
   useEffect(() => {
     if (response) {
       setData(response);
-      console.log(response);
     }
   }, [response]);
 
@@ -52,8 +54,11 @@ export default function UsersWithNoCalls({ fetchUserData }) {
     }
   };
 
-  let downloadFile = () => {
-    if (response.records.data.length > 0) {
+  let downloadFile = async () => {
+    setLoadingBtn(true);
+    let downloadResponseData = await downloadResponse();
+
+    if (downloadResponseData.records.data.length > 0) {
       var headers = {
         name: "Name",
         email: "Email",
@@ -62,8 +67,7 @@ export default function UsersWithNoCalls({ fetchUserData }) {
       };
 
       var itemsFormatted = [];
-      debugger;
-      response.records.data.forEach(item => {
+      downloadResponseData.records.data.forEach(item => {
         itemsFormatted.push({
           name: item.name,
           email: item.email,
@@ -73,6 +77,7 @@ export default function UsersWithNoCalls({ fetchUserData }) {
       });
 
       exportCSVFile(headers, itemsFormatted, `no_calls_${getFormattedTime()}`);
+      setLoadingBtn(false);
     }
   };
 
@@ -94,8 +99,13 @@ export default function UsersWithNoCalls({ fetchUserData }) {
             <button
               className="btn btn-sm btn-outline-primary pull-right mr-3"
               onClick={downloadFile}
+              disabled={loadingBtn}
             >
-              <i className="fa fa-download fa-xs" aria-hidden="true"></i>
+              {loadingBtn ? (
+                <span class="spinner-border spinner-border-sm"></span>
+              ) : (
+                <i className="fa fa-download fa-xs" aria-hidden="true"></i>
+              )}
             </button>
           </div>
         </div>
