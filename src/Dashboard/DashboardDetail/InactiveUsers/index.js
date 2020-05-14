@@ -17,8 +17,9 @@ export default function InactiveUsers({ fetchUserData }) {
   const [activeDays, setActiveDays] = useState(0);
   const [pageno, setPageno] = useState(1);
   const [data, setData] = useState(null);
+  const [loadingBtn, setLoadingBtn] = useState(false);
 
-  const { loading, response, error } = useUsersData(
+  const { loading, response, error, downloadResponse } = useUsersData(
     fetchUserData,
     "inactiveusers",
     activeDays,
@@ -53,8 +54,10 @@ export default function InactiveUsers({ fetchUserData }) {
     }
   };
 
-  let downloadFile = () => {
-    if (response.records.data.length > 0) {
+  let downloadFile = async () => {
+    setLoadingBtn(true);
+    let downloadResponseData = await downloadResponse();
+    if (downloadResponseData.records.data.length > 0) {
       var headers = {
         name: "Name",
         email: "Email",
@@ -63,7 +66,7 @@ export default function InactiveUsers({ fetchUserData }) {
       };
 
       var itemsFormatted = [];
-      response.records.data.forEach(item => {
+      downloadResponseData.records.data.forEach(item => {
         itemsFormatted.push({
           name: item.name,
           email: item.email,
@@ -77,6 +80,7 @@ export default function InactiveUsers({ fetchUserData }) {
         itemsFormatted,
         `inactive_users_${getFormattedTime()}`
       );
+      setLoadingBtn(false);
     }
   };
 
@@ -98,8 +102,13 @@ export default function InactiveUsers({ fetchUserData }) {
             <button
               className="btn btn-sm btn-outline-primary pull-right mr-3"
               onClick={downloadFile}
+              disabled={loadingBtn}
             >
-              <i className="fa fa-download fa-xs" aria-hidden="true"></i>
+              {loadingBtn ? (
+                <span class="spinner-border spinner-border-sm"></span>
+              ) : (
+                <i className="fa fa-download fa-xs" aria-hidden="true"></i>
+              )}
             </button>
           </div>
         </div>
