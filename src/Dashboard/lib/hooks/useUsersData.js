@@ -1,6 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 
-const useUsersData = (fetchUserData, type, activeDays,pageno) => {
+const useUsersData = (
+  fetchUserData,
+  type,
+  activeDays,
+  pageno,
+  downloadStatus
+) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [response, setResponse] = useState(null);
@@ -9,10 +15,22 @@ const useUsersData = (fetchUserData, type, activeDays,pageno) => {
     setLoading(true);
     setResponse(null);
     setError(null);
-    let data = await fetchUserData(type,pageno,activeDays);
+    let data = await fetchUserData(type, pageno, activeDays);
     setResponse(data);
     setLoading(false);
-  }, [fetchUserData, type,pageno,activeDays]);
+  }, [fetchUserData, type, pageno, activeDays]);
+
+  useEffect(() => {
+    if (downloadStatus) {
+      console.log("hello download");
+    }
+  }, [downloadStatus]);
+
+  let downloadResponse = async () => {
+    console.log("download things");
+    let response = await fetchUserData(type, null, 0, null);
+    return response;
+  };
 
   useEffect(() => {
     callAPI();
@@ -22,6 +40,7 @@ const useUsersData = (fetchUserData, type, activeDays,pageno) => {
     loading,
     response,
     error,
+    downloadResponse
   };
 };
 
