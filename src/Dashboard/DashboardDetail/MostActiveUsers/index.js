@@ -19,8 +19,9 @@ const mostActiveUsersHeader = [
 export default function MostActiveUsers({ fetchUserData }) {
   const [activeDays, setActiveDays] = useState(0);
   const [data, setData] = useState(null);
+  const [loadingBtn, setLoadingBtn] = useState(false);
 
-  const { loading, response, error } = useUsersData(
+  const { loading, response, error, downloadResponse } = useUsersData(
     fetchUserData,
     "mostactiveUsers",
     activeDays
@@ -36,8 +37,10 @@ export default function MostActiveUsers({ fetchUserData }) {
     setActiveDays(active);
   };
 
-  let downloadFile = () => {
-    if (response.records.length > 0) {
+  let downloadFile = async () => {
+    setLoadingBtn(true);
+    let downloadResponseData = await downloadResponse();
+    if (downloadResponseData.records.length > 0) {
       var headers = {
         name: "Name",
         email: "email",
@@ -47,7 +50,7 @@ export default function MostActiveUsers({ fetchUserData }) {
       };
 
       var itemsFormatted = [];
-      response.records.forEach(item => {
+      downloadResponseData.records.forEach(item => {
         itemsFormatted.push({
           name: item.name,
           email: item.email,
@@ -62,6 +65,7 @@ export default function MostActiveUsers({ fetchUserData }) {
         itemsFormatted,
         `most_active_user_${getFormattedTime()}`
       );
+      setLoadingBtn(false);
     }
   };
 
@@ -83,8 +87,13 @@ export default function MostActiveUsers({ fetchUserData }) {
             <button
               className="btn btn-sm btn-outline-primary pull-right mr-3"
               onClick={downloadFile}
+              disabled={loadingBtn}
             >
-              <i className="fa fa-download fa-xs" aria-hidden="true"></i>
+              {loadingBtn ? (
+                <span class="spinner-border spinner-border-sm"></span>
+              ) : (
+                <i className="fa fa-download fa-xs" aria-hidden="true"></i>
+              )}
             </button>
           </div>
         </div>
