@@ -1,3 +1,6 @@
+.table_container {
+  padding-top: 0.1% !important;
+}
 .utable_container td {
   font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
     helvetica neue, Arial, noto sans, sans-serif, apple color emoji,

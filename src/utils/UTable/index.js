@@ -219,9 +219,9 @@ export default function UTable({
                       </td>
                       <td className="title">{user.email}</td>
                       <td className="text-center">
-                        <span
-                          className={`flag-icon flag-icon-${user.country} h4 mb-0`}
-                        ></span>
+                        <i
+                          className={`flag-icon flag-icon-${user.country.toLocaleLowerCase()} h4 mb-0`}
+                        ></i>
                       </td>
                       <td>
                         {user.last_active_ip ? user.last_active_ip : "NA"}

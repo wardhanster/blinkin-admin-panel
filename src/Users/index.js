@@ -12,14 +12,14 @@ const initial = {
   pageNum: 1,
   refresh: false,
   searchTerms: null,
-  clearAll: false,
+  clearAll: false
 };
 
 export default function Users({
   fetchAPI,
   fetchUserById,
   updateUserData,
-  deleteUsers,
+  deleteUsers
 }) {
   let [activeModal, setActiveModal] = useState(false);
   let [userData, setUserData] = useState(null);
@@ -78,16 +78,16 @@ export default function Users({
     callAPI(true);
   }, []);
 
-  const handlePerPage = (value) => {
+  const handlePerPage = value => {
     setMain({ ...main, perPage: value });
   };
 
-  const handlePageNumberSubmit = (pageNum) => {
+  const handlePageNumberSubmit = pageNum => {
     setMain({ ...main, pageNum });
   };
 
-  const handleUserView = async (id) => {
-    setActiveModal((activeModal) => !activeModal);
+  const handleUserView = async id => {
+    setActiveModal(activeModal => !activeModal);
     setModalLoading(true);
     let user = await fetchUserById(id);
     if (user.success) {
@@ -96,7 +96,7 @@ export default function Users({
     }
   };
 
-  const handleResponseError = (msg) => {
+  const handleResponseError = msg => {
     setMsg(msg);
     setSnackbarShow(true);
     setTimeout(() => {
@@ -105,10 +105,10 @@ export default function Users({
     }, 1000);
   };
 
-  const handlePostUpdate = (data) => {
+  const handlePostUpdate = data => {
     setModalLoading(false);
     setActiveModal(false);
-    setRefresh((refresh) => !refresh);
+    setRefresh(refresh => !refresh);
     setMsg("Updated Successfully");
     setSnackbarShow(true);
     setTimeout(() => {
@@ -122,14 +122,14 @@ export default function Users({
     updateUserData(id, data, handlePostUpdate);
   };
 
-  const toggleModal = (val) => {
+  const toggleModal = val => {
     setActiveModal(val);
   };
 
-  const deleteCallback = (res) => {
+  const deleteCallback = res => {
     console.log(res);
     if (res.success) {
-      setRefresh((refresh) => !refresh);
+      setRefresh(refresh => !refresh);
       setMsg("Deleted Successfully");
       setSnackbarShow(true);
       setTimeout(() => {
@@ -146,11 +146,11 @@ export default function Users({
     }
   };
 
-  const handleDelete = (ids) => {
+  const handleDelete = ids => {
     deleteUsers(ids, deleteCallback);
   };
 
-  const handleFilterSubmit = (data) => {
+  const handleFilterSubmit = data => {
     setShowFilter(true);
     // setSearchTerms(data);
     setMain({ ...main, searchTerms: data });
@@ -163,34 +163,32 @@ export default function Users({
   };
 
   return (
-    <div>
-      <div className="container">
-        {main.loading ? (
-          <Loader />
-        ) : (
-          <UTable
-            data={main.responseData}
-            perPageCount={main.perPage}
-            handlePerPage={handlePerPage}
-            handlePageNumberSubmit={handlePageNumberSubmit}
-            handleUserView={handleUserView}
-            handleDelete={handleDelete}
-            showFilter={showFilter}
-            handleFilterSubmit={handleFilterSubmit}
-            handleClear={handleClear}
-          />
-        )}
-        {activeModal && (
-          <UserModal
-            active={activeModal}
-            userDetails={userData}
-            toggleModal={toggleModal}
-            modalLoading={modalLoading}
-            updateUserDetails={updateUserDetails}
-          />
-        )}
-        {snackbarShow && <div>{snackBar(snackbarShow, msg)}</div>}
-      </div>
+    <div className="container bg-white mt-2 mb-3">
+      {main.loading ? (
+        <Loader />
+      ) : (
+        <UTable
+          data={main.responseData}
+          perPageCount={main.perPage}
+          handlePerPage={handlePerPage}
+          handlePageNumberSubmit={handlePageNumberSubmit}
+          handleUserView={handleUserView}
+          handleDelete={handleDelete}
+          showFilter={showFilter}
+          handleFilterSubmit={handleFilterSubmit}
+          handleClear={handleClear}
+        />
+      )}
+      {activeModal && (
+        <UserModal
+          active={activeModal}
+          userDetails={userData}
+          toggleModal={toggleModal}
+          modalLoading={modalLoading}
+          updateUserDetails={updateUserDetails}
+        />
+      )}
+      {snackbarShow && <div>{snackBar(snackbarShow, msg)}</div>}
     </div>
   );
 }
