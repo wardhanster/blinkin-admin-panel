@@ -108,7 +108,7 @@ export default function UTable({
   };
 
   return (
-    <>
+    <div className="container bg-white mt-2 mb-3">
       <div className="table_container">
         <div className="row mt-3 mb-3">
           <div className="col-10">
@@ -220,6 +220,7 @@ export default function UTable({
                       <td className="title">{user.email}</td>
                       <td className="text-center">
                         <i
+                          title={user.country}
                           className={`flag-icon flag-icon-${user.country.toLocaleLowerCase()} h4 mb-0`}
                         ></i>
                       </td>
@@ -279,6 +280,6 @@ export default function UTable({
           deleteUser={handleDeleteConfirmation}
         />
       )}
-    </>
+    </div>
   );
 }

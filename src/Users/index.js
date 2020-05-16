@@ -163,7 +163,7 @@ export default function Users({
   };
 
   return (
-    <div className="container bg-white mt-2 mb-3">
+    <>
       {main.loading ? (
         <Loader />
       ) : (
@@ -189,6 +189,6 @@ export default function Users({
         />
       )}
       {snackbarShow && <div>{snackBar(snackbarShow, msg)}</div>}
-    </div>
+    </>
   );
 }
