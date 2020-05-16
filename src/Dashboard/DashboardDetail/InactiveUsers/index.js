@@ -86,7 +86,7 @@ export default function InactiveUsers({ fetchUserData }) {
 
   return (
     <div className="card">
-      <div className="card-body">
+      <div className="card-body dashboard_cardbody">
         <div className="row mb-3">
           <div className="col-3">
             <h6>

@@ -10,7 +10,7 @@ export default function DashboardHeaderCount({ fetchData }) {
   let [activeDays, setActiveDays] = useState(0);
   let { loading, response, error } = useDashboard(fetchData, activeDays);
 
-  let handleBtnClick = useCallback((data) => {
+  let handleBtnClick = useCallback(data => {
     setActiveDays(data);
   }, []);
 
