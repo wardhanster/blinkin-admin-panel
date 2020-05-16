@@ -251,9 +251,8 @@ const CallActivity = props => {
   }
 
   return (
-    <div className="bg-light p-3">
-      <h4 className="text-left text-muted">View Call Activity</h4>
-      <div className=" p-3 bg-white border">
+    <div>
+      <div className=" p-3 mt-3 bg-white border">
         <div className="d-flex justify-content-between">
           <Button
             color="primary"
