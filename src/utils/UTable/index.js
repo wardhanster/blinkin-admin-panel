@@ -21,7 +21,7 @@ export default function UTable({
   handleDelete,
   handleFilterSubmit,
   showFilter,
-  handleClear,
+  handleClear
 }) {
   const [userData, setUserData] = useState(data ? data[0].data : []);
   const [isOpen, setIsOpen] = useState(false);
@@ -57,7 +57,7 @@ export default function UTable({
       setListId([...listId, id]);
     } else {
       setSelectAll(false);
-      setListId(listId.filter((item) => item !== id));
+      setListId(listId.filter(item => item !== id));
     }
   };
   const handleAllChange = () => {
@@ -67,7 +67,7 @@ export default function UTable({
     } else {
       setSelectAll(true);
       let ids = [];
-      userData.forEach((user) => {
+      userData.forEach(user => {
         ids.push(user.id);
       });
       setListId(ids);
@@ -87,7 +87,7 @@ export default function UTable({
     setDeleteModal(false);
   };
 
-  const handleFilterbtn = (data) => {
+  const handleFilterbtn = data => {
     setShowLoading(true);
     handleFilterSubmit(data);
   };
@@ -97,12 +97,12 @@ export default function UTable({
     handleClear();
   };
 
-  const handlePageNumber = (num) => {
+  const handlePageNumber = num => {
     setShowLoading(true);
     handlePageNumberSubmit(num);
   };
 
-  const handlePerPageBtn = (e) => {
+  const handlePerPageBtn = e => {
     setShowLoading(true);
     handlePerPage(e.target.value);
   };
@@ -182,7 +182,7 @@ export default function UTable({
             </thead>
             <tbody>
               {data &&
-                userData.map((user) => {
+                userData.map(user => {
                   return (
                     <tr
                       className={
@@ -198,7 +198,7 @@ export default function UTable({
                               listId.indexOf(user.id) > -1 ? true : false
                             }
                             value={user.id}
-                            onChange={(e) => handleCheckBox(user.id, e)}
+                            onChange={e => handleCheckBox(user.id, e)}
                           />
                           <span></span>
                         </label>
@@ -218,7 +218,11 @@ export default function UTable({
                         </div>
                       </td>
                       <td className="title">{user.email}</td>
-                      <td className="text-center">{user.country}</td>
+                      <td className="text-center">
+                        <span
+                          className={`flag-icon flag-icon-${user.country} h4 mb-0`}
+                        ></span>
+                      </td>
                       <td>
                         {user.last_active_ip ? user.last_active_ip : "NA"}
                       </td>
@@ -263,7 +267,7 @@ export default function UTable({
             <Paginator
               maxClickableCells={5}
               paginatorData={data[0]}
-              pageNumberSelect={(count) => handlePageNumber(count)}
+              pageNumberSelect={count => handlePageNumber(count)}
             />
           </div>
         </div>
