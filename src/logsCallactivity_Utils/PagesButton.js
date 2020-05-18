@@ -41,6 +41,7 @@ const PagesButton = props => {
     for (let i = startPage; i <= lastPage; i++) {
       pagesButton.push(
         <Button
+          key={`pagesbutton_${i}`}
           color={current_page === i ? "primary" : null}
           className="border"
           onClick={() => {
@@ -54,6 +55,7 @@ const PagesButton = props => {
     if (current_page !== last_page)
       pagesButton.push(
         <Button
+          key={`pageBtn_${current_page}`}
           color="light"
           className="border"
           onClick={() => {
