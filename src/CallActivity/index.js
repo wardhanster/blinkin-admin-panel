@@ -128,7 +128,7 @@ const CallActivity = props => {
       tableContent = callActivityData.data.map((content, index) => {
         const callStartTime = new Date(content.call_start_time);
         return (
-          <tr key={content.id} className="text-left">
+          <tr key={`callactivity_${index}`} className="text-left">
             <td>
               <div>
                 {callActivityData.current_page * paginate -
@@ -139,10 +139,21 @@ const CallActivity = props => {
             </td>
             <td>
               <div>{content.user_name}</div>
-              <div className="small text-muted">Position: IT</div>
+              <div className="small text-muted">
+                Position: {content.position ? country.position : "NA"}
+              </div>
             </td>
             <td>{content.users_email}</td>
-            <td>India</td>
+            <td>
+              {content.country ? (
+                <i
+                  title={content.country}
+                  className={`flag-icon flag-icon-${content.country.toLocaleLowerCase()} h4 mb-0`}
+                ></i>
+              ) : (
+                "India"
+              )}
+            </td>
             <td>{content.room_id}</td>
             <td>{content.to_phonenumber ? content.to_phonenumber : "NA"}</td>
             <td>
@@ -261,11 +272,14 @@ const CallActivity = props => {
           >
             {shouldShowFilterOptions ? "Hide" : "Show"} Filter Options
           </Button>
-          <Input type="select" onChange={handlePagination} className="w-25">
+          <Input
+            type="select"
+            onChange={handlePagination}
+            className="w-25"
+            defaultValue="25"
+          >
             <option value="10">Show 10</option>
-            <option value="25" selected>
-              Show 25
-            </option>
+            <option value="25">Show 25</option>
             <option value="50">Show 50</option>
             <option value="100">Show 100</option>
             <option value="200">Show 200</option>
