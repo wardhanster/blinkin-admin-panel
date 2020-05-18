@@ -151,7 +151,7 @@ const Logs = props => {
       const created_at = new Date(content.created_at);
 
       return (
-        <tr key={content.id} className="text-left">
+        <tr key={`logs_${index}`} className="text-left">
           <td>
             <div>{content.user_name}</div>
             <div className="small text-muted">
@@ -166,8 +166,17 @@ const Logs = props => {
             </div>
           </td>
           <td>{content.users_email}</td>
-          <td>India</td>
-          <td>IT Department</td>
+          <td>
+            {content.country ? (
+              <i
+                title={content.country}
+                className={`flag-icon flag-icon-${content.country.toLocaleLowerCase()} h4 mb-0`}
+              ></i>
+            ) : (
+              "India"
+            )}
+          </td>
+          <td>{content.position ? content.position : "NA"}</td>
           <td>{content.ip ? content.ip : "_"}</td>
           <td>{content.event_type}</td>
         </tr>
@@ -288,11 +297,10 @@ const Logs = props => {
             type="select"
             onChange={handlePagination}
             className="w-25 mr-3"
+            defaultValue="25"
           >
             <option value="10">Show 10</option>
-            <option value="25" selected>
-              Show 25
-            </option>
+            <option value="25">Show 25</option>
             <option value="50">Show 50</option>
             <option value="100">Show 100</option>
             <option value="200">Show 200</option>
