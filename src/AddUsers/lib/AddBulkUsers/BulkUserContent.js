@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Jumbotron } from "reactstrap";
 
+import CountryISOModal from "../utils/CountryISOModal";
+
 export default function BulkUserContent(props) {
+  const [active, setActive] = useState(false);
+
+  const toggleModal = status => {
+    setActive(status);
+  };
+
+  const activeModal = () => {
+    setActive(true);
+  };
+
   let { content } = props;
   return (
     <Jumbotron>
@@ -29,8 +41,14 @@ export default function BulkUserContent(props) {
         </kbd>
       </p>
       <p>
+        <button className="btn btn-link" onClick={activeModal}>
+          Country ISO code Reference
+        </button>
+      </p>
+      <p>
         <b>Note - * Fields are mandatory | Position is optional</b>
       </p>
+      <CountryISOModal active={active} modalStatus={toggleModal} />
     </Jumbotron>
   );
 }
