@@ -6,7 +6,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container,
+  Container
 } from "reactstrap";
 import classnames from "classnames";
 
@@ -17,15 +17,15 @@ import AddBulkUsers from "./lib/AddBulkUsers";
 
 export default function AddUsers({
   handleSingleUserAPI,
-  handleBulkUploadFile,
+  handleBulkUploadFile
 }) {
   const [activeTab, setActiveTab] = useState("1");
-  const toggle = (tab) => {
+  const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
   return (
-    <Container className="mt-3 add__user__container">
+    <Container className="mt-3 add__user__container mb-3">
       <Nav tabs>
         <NavItem>
           <NavLink
