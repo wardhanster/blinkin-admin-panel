@@ -1,10 +1,11 @@
 # blinkin admin panel
-We have 5 components into this Component
+We have 5 components into this library
 1) Users
 2) AddUsers
 3) Dashboard
-4) Logs
-5) Call activity
+4) Call activity
+5) Logs
+
 
 ## Add package into existing project
 
