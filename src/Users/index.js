@@ -125,7 +125,7 @@ export default function Users({
     setActiveModal(val);
   };
 
-  const handleDelete = async ids => {
+  const handleDelete = async (ids, callback) => {
     let deleteRes = await deleteUsers(ids);
     if (deleteRes.success) {
       setRefresh(refresh => !refresh);
@@ -135,6 +135,7 @@ export default function Users({
         setMsg(null);
         setSnackbarShow(false);
       }, 1000);
+      callback();
     } else {
       setMsg("Failed");
       setSnackbarShow(true);

@@ -60,6 +60,9 @@ export default function UTable({
       setListId(listId.filter(item => item !== id));
     }
   };
+  const handleClearCheckBox = () => {
+    setListId([]);
+  };
   const handleAllChange = () => {
     if (selectAll) {
       setSelectAll(false);
@@ -83,7 +86,7 @@ export default function UTable({
   };
 
   const handleDeleteConfirmation = () => {
-    handleDelete(listId);
+    handleDelete(listId, handleClearCheckBox);
     setDeleteModal(false);
   };
 
