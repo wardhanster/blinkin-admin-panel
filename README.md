@@ -1,4 +1,4 @@
-# blinkin admin panel
+# blinkin admin panel (870 kb)
 We have 5 components into this library
 1) Users
 2) AddUsers
