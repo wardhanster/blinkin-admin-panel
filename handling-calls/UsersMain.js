@@ -5,7 +5,7 @@ let myHeaders = new Headers();
 myHeaders.append("Accept", "application/json");
 myHeaders.append(
   "x-token",
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1OSwibmFtZSI6IlJhbmppdGgiLCJlbWFpbCI6InJhbmppdGgudkBibGlua2luLmlvIiwiY29tcGFueV9pZCI6MSwibGFzdF9sb2dpbl9hdCI6IjIwMjAtMDUtMTUgMDk6Mzg6MjIiLCJzZXNzaW9uX2lkIjoiUjNTWlV2aHY5NnVvQ2ltd2M2OTcyWEFKQ01BRXRwYXFHSVZzaTFGeUJla2NwWmJjZFE0VzBHOERLRjAxIiwiY291bnRyeSI6IklOIiwiZXhwaXJ5IjoxNTkwNzQ1MTAyLCJpc19jb21wYW55X2FkbWluIjp0cnVlfQ.tKudkQUXPZPUbKUPXKW7a1PDS6J0DiYV1M8ql1t68FA"
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1OSwibmFtZSI6IlJhbmppdGgiLCJlbWFpbCI6InJhbmppdGgudkBibGlua2luLmlvIiwiY29tcGFueV9pZCI6MSwibGFzdF9sb2dpbl9hdCI6IjIwMjAtMDUtMjUgMTE6MzE6NDAiLCJzZXNzaW9uX2lkIjoiQlA2VnlNM3o1S2ZXdGc4WGEzTG5VUUpXZVZPSE5FaUZpOUh1aFNLbWFXYnhKS0NmSnlERHNpRlZPT3pWIiwiY291bnRyeSI6IklOIiwiZXhwaXJ5IjoxNTkxNjE1OTAwLCJpc19jb21wYW55X2FkbWluIjp0cnVlfQ.Sr22Bit_sNqXw4zK_2_VaM97VWq1hwg583Q4LNKMO30"
 );
 
 const fetchAPI = async (paginate, pageNo, searchTerm = null) => {
@@ -50,9 +50,7 @@ const updateUserData = async (id, userJson, callback) => {
     headers: myHeaders,
     body: formData
   });
-  let data = await response.json();
-
-  callback(data);
+  return await response.json();
 };
 
 const deleteUsers = async (ids, callback) => {
@@ -66,9 +64,7 @@ const deleteUsers = async (ids, callback) => {
     headers: myHeaders,
     body: formData
   });
-  let data = await response.json();
-
-  callback(data);
+  return await response.json();
 };
 
 function App() {
