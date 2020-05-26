@@ -105,30 +105,29 @@ export default function Users({
     }, 1000);
   };
 
-  const handlePostUpdate = data => {
-    setModalLoading(false);
-    setActiveModal(false);
-    setRefresh(refresh => !refresh);
-    setMsg("Updated Successfully");
-    setSnackbarShow(true);
-    setTimeout(() => {
-      setMsg(null);
-      setSnackbarShow(false);
-    }, 1000);
-  };
-
-  const updateUserDetails = (id, data) => {
+  const updateUserDetails = async (id, data) => {
     setModalLoading(true);
-    updateUserData(id, data, handlePostUpdate);
+    let res = await updateUserData(id, data);
+    if (res) {
+      setModalLoading(false);
+      setActiveModal(false);
+      setRefresh(refresh => !refresh);
+      setMsg("Updated Successfully");
+      setSnackbarShow(true);
+      setTimeout(() => {
+        setMsg(null);
+        setSnackbarShow(false);
+      }, 1000);
+    }
   };
 
   const toggleModal = val => {
     setActiveModal(val);
   };
 
-  const deleteCallback = res => {
-    console.log(res);
-    if (res.success) {
+  const handleDelete = async ids => {
+    let deleteRes = await deleteUsers(ids);
+    if (deleteRes.success) {
       setRefresh(refresh => !refresh);
       setMsg("Deleted Successfully");
       setSnackbarShow(true);
@@ -144,10 +143,6 @@ export default function Users({
         setSnackbarShow(false);
       }, 1000);
     }
-  };
-
-  const handleDelete = ids => {
-    deleteUsers(ids, deleteCallback);
   };
 
   const handleFilterSubmit = data => {
