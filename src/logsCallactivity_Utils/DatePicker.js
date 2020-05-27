@@ -20,6 +20,8 @@ function DatePicker(props) {
   return (
     <div>
       <DateRangePicker
+        small
+        block
         startDate={startDate}
         startDateId="tata-start-date"
         endDate={endDate}
