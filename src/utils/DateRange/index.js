@@ -3,6 +3,7 @@ import "react-dates/initialize";
 import DateRangePicker from "react-dates/lib/components/DateRangePicker";
 import isInclusivelyAfterDay from "react-dates/lib/utils/isInclusivelyAfterDay";
 import "react-dates/lib/css/_datepicker.css";
+import "./date_range.css";
 import moment from "moment";
 // import localization from "moment/locale/de";
 
@@ -53,9 +54,9 @@ function DateRange({ handleDate, clear }) {
         endDateId="tata-end-date"
         onDatesChange={handleDatesChange}
         focusedInput={focusedInput}
-        onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
+        onFocusChange={focusedInput => setFocusedInput(focusedInput)}
         displayFormat="YYYY-MM-DD"
-        isOutsideRange={(day) =>
+        isOutsideRange={day =>
           isInclusivelyAfterDay(day, moment().add(1, "days"))
         }
         initialVisibleMonth={() => moment().subtract(1, "month")}
