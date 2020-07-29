@@ -13,7 +13,7 @@ import {
   Button,
   Row,
   Col,
-  Spinner
+  Spinner,
 } from "reactstrap";
 import Select from "react-select";
 
@@ -33,7 +33,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
     handleSubmit,
     handleClear,
     handleReset,
-    handleCountryChange
+    handleCountryChange,
   } = useForm(handleSuccess, validate, passwordType);
 
   function handleSuccess() {
@@ -44,14 +44,16 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
       values.pass_gen = "generate_password";
     }
     try {
-      values.userCountry = values.userCountry.value;
+      values.userCountry = values.userCountryCode.value;
     } catch (e) {
       console.log(e);
     }
-    handleSingleUserAPI(values, handleResponseCallBack);
+    let submitData = Object.assign({}, values);
+    delete submitData.userCountryCode;
+    handleSingleUserAPI(submitData, handleResponseCallBack);
   }
 
-  let handleResponseCallBack = res => {
+  let handleResponseCallBack = (res) => {
     if (res[0].success) {
       setResponseMsg(res[0].message);
       setShowAlert(true);
@@ -187,11 +189,12 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
         <FormGroup>
           <Label>Country</Label>
           <Select
-            name="userCountry"
+            name="userCountryCode"
             options={countryJson}
             onChange={handleCountryChange}
             isClearable={true}
-            value={values.userCountry || null}
+            defaultValue={values.userCountryCode || null}
+            value={values.userCountryCode || null}
           />
           {errors.country && (
             <small className="form-text text-danger">{errors.country}</small>
