@@ -4,18 +4,35 @@ import "./file__upload.css";
 
 export default function FileUpload({ uploadFiles, clearAll }) {
   const [files, setFiles] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
   const inputRef = useRef();
   const btnRef = useRef();
 
   const handleFile = (e) => {
-    setFiles(e.target.files);
-    console.log(e.target.files);
+    let filesize = 10500000; // 10mb in bytes
+    setErrorMsg(null);
+    if (
+      e.target.files[0].type !== "text/csv" &&
+      e.target.files[0].type !== "text/plain"
+    ) {
+      inputRef.current.value = null;
+      setErrorMsg("Invalid file type, please upload only csv, txt format");
+    } else {
+      if (e.target.files[0].size > filesize) {
+        setErrorMsg("Your file size is over limit. Max upload size is 10MB");
+        inputRef.current.value = null;
+      } else {
+        setFiles(e.target.files);
+      }
+    }
   };
 
   const handleFileUpload = () => {
     if (files) {
       btnRef.current.disabled = true;
       uploadFiles(files);
+    } else {
+      setErrorMsg("File does not exist");
     }
   };
 
@@ -30,9 +47,21 @@ export default function FileUpload({ uploadFiles, clearAll }) {
     <>
       <div className="file_upload_container">
         <div className="dashed-border">
-          <input type="file" onChange={handleFile} ref={inputRef} />
+          <input
+            type="file"
+            accept="csv,text/plain"
+            onChange={handleFile}
+            ref={inputRef}
+          />
         </div>
       </div>
+      {errorMsg && (
+        <div className="text-center">
+          <p className="text-danger">
+            <b>{errorMsg}</b>
+          </p>
+        </div>
+      )}
       <div className="row">
         <div className="col">
           <button
