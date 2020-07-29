@@ -18,14 +18,10 @@ export default function validate(values, passType) {
   } else if (values.name.length < 3) {
     errors.name = "Name Minumum 3 Characters";
   }
-  try {
-    if (!values.userCountry) {
-      errors.country = "Country is required";
-    } else if (!values.userCountry.label && !values.userCountry.value) {
-      errors.country = "Country is required";
-    }
-  } catch (e) {
-    console.log(e);
+  if (!values.userCountryCode) {
+    errors.country = "Country is required";
+  } else if (!values.userCountryCode.label && !values.userCountryCode.value) {
+    errors.country = "Country is required";
   }
 
   return errors;
