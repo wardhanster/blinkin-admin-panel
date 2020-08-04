@@ -10,20 +10,39 @@ export default function FileUpload({ uploadFiles, clearAll }) {
 
   const handleFile = (e) => {
     let filesize = 10500000; // 10mb in bytes
+    let newFileType = false;
+    let fileType;
     setErrorMsg(null);
-    if (
-      e.target.files[0].type !== "text/csv" &&
-      e.target.files[0].type !== "text/plain"
-    ) {
-      inputRef.current.value = null;
-      setErrorMsg("Invalid file type, please upload only csv, txt format");
-    } else {
+    if (e.target.files[0].type === "") {
+      fileType = e.target.files[0].name.split(".").pop();
+      newFileType = true;
+    }
+
+    if (newFileType) {
+      if (fileType !== "txt" && fileType !== "csv") {
+        inputRef.current.value = null;
+        setErrorMsg("Invalid file type, please upload only csv, txt format");
+      }
+    }
+    if (!newFileType) {
+      if (
+        e.target.files[0].type !== "text/csv" &&
+        e.target.files[0].type !== "text/plain"
+      ) {
+        inputRef.current.value = null;
+        setErrorMsg("Invalid file type, please upload only csv, txt format");
+      }
+    }
+    try {
       if (e.target.files[0].size > filesize) {
         setErrorMsg("Your file size is over limit. Max upload size is 10MB");
         inputRef.current.value = null;
       } else {
         setFiles(e.target.files);
       }
+    } catch (e) {
+      inputRef.current.value = null;
+      console.log("file does not exist");
     }
   };
 
