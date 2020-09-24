@@ -62,7 +62,7 @@ const Paginator = (props) => {
             <PaginationLink
               onClick={() => onPageNumberSelect(paginatorData.last_page)}
             >
-              Last
+              {window.strings.Dashboard_last || "Last"}
             </PaginationLink>
           </PaginationItem>
         </React.Fragment>
