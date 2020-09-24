@@ -17,13 +17,18 @@ export default function DeleteConfirmation(props) {
 
   return (
     <Modal isOpen={modal} toggle={toggle}>
-      <ModalHeader toggle={toggle}>Delete</ModalHeader>
+      <ModalHeader toggle={toggle}>
+        {window.strings.Dashboard_delete || "Delete"}
+      </ModalHeader>
       <ModalBody>
-        <p>Are you sure to Delete User records ? </p>
+        <p>
+          {window.strings.Dashboard_userDeleteMsg ||
+            "Are you sure to Delete User records ? "}
+        </p>
       </ModalBody>
       <ModalFooter>
         <Button color="danger" onClick={deleteUser}>
-          Delete
+          {window.strings.Dashboard_delete || "Delete"}
         </Button>{" "}
       </ModalFooter>
     </Modal>
