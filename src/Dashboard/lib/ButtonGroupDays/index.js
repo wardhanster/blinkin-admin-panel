@@ -20,7 +20,7 @@ export default function ButtonGroupDays(props) {
         }
         onClick={() => handleBtnClick(1)}
       >
-        Yesterday
+        {window.strings.Dashboard_yesterday || "Yesterday"}
       </button>
       <button
         type="button"
@@ -29,7 +29,7 @@ export default function ButtonGroupDays(props) {
         }
         onClick={() => handleBtnClick(7)}
       >
-        7 Days
+        7 {window.strings.Dashboard_days || "Days"}
       </button>
       <button
         type="button"
@@ -38,7 +38,7 @@ export default function ButtonGroupDays(props) {
         }
         onClick={() => handleBtnClick(30)}
       >
-        30 Days
+        30 {window.strings.Dashboard_days || "Days"}
       </button>
       <button
         type="button"
@@ -47,7 +47,7 @@ export default function ButtonGroupDays(props) {
         }
         onClick={() => handleBtnClick(90)}
       >
-        90 Days
+        90 {window.strings.Dashboard_days || "Days"}
       </button>
       <button
         type="button"
@@ -56,7 +56,7 @@ export default function ButtonGroupDays(props) {
         }
         onClick={() => handleBtnClick(0)}
       >
-        All Time
+        {window.strings.Dashboard_days || "All Time"}
       </button>
     </div>
   );

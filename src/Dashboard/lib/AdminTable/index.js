@@ -13,7 +13,7 @@ function dateToFormat(date) {
 export default function AdminTable(props) {
   const { tableHeader, data, loading, error } = props;
 
-  const RenderRow = props => {
+  const RenderRow = (props) => {
     return props.keys.map((key, index) => {
       let data =
         dateVal.indexOf(key) > -1
@@ -27,7 +27,7 @@ export default function AdminTable(props) {
     });
   };
 
-  let getHeaders = headerData => {
+  let getHeaders = (headerData) => {
     return tableHeader.map((item, index) => {
       return <th key={index}>{item}</th>;
     });
@@ -51,7 +51,11 @@ export default function AdminTable(props) {
 
   return (
     <>
-      {error && <div className="text-center">Some Error Occured</div>}
+      {error && (
+        <div className="text-center">
+          {window.strings.Dashboard_errorOccured || "Some Error occured"}
+        </div>
+      )}
       {loading && (
         <div className="text-center m-2">
           <Spinner style={{ width: "3rem", height: "3rem" }} />

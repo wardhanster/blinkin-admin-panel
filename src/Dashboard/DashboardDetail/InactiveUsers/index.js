@@ -8,10 +8,15 @@ import Paginator from "../../../utils/Paginator";
 
 import {
   exportCSVFile,
-  getFormattedTime
+  getFormattedTime,
 } from "../../lib/hooks/createFileAndDownload";
 
-const inactiveUsersHeader = ["Name", "Email", "Country", "Created At"];
+const inactiveUsersHeader = [
+  window.strings.Dashboard_name || "Name",
+  window.strings.Dashboard_email || "Email",
+  window.strings.Dashboard_country || "Country",
+  window.strings.Dashboard_createdAt || "Created At",
+];
 
 export default function InactiveUsers({ fetchUserData }) {
   const [activeDays, setActiveDays] = useState(0);
@@ -32,15 +37,15 @@ export default function InactiveUsers({ fetchUserData }) {
     }
   }, [response]);
 
-  let setClick = active => {
+  let setClick = (active) => {
     setActiveDays(active);
   };
 
-  let onPageChange = count => {
+  let onPageChange = (count) => {
     setPageno(count);
   };
 
-  let pagination = data => {
+  let pagination = (data) => {
     if (data && data.records.data.length > 0) {
       return (
         <div className="pull-right">
@@ -62,16 +67,16 @@ export default function InactiveUsers({ fetchUserData }) {
         name: "Name",
         email: "Email",
         country: "Country",
-        created_at: "Created At"
+        created_at: "Created At",
       };
 
       var itemsFormatted = [];
-      downloadResponseData.records.data.forEach(item => {
+      downloadResponseData.records.data.forEach((item) => {
         itemsFormatted.push({
           name: item.name,
           email: item.email,
           country: item.country,
-          last_login_at: item.created_at
+          last_login_at: item.created_at,
         });
       });
 
@@ -90,7 +95,7 @@ export default function InactiveUsers({ fetchUserData }) {
         <div className="row mb-3">
           <div className="col-3">
             <h6>
-              <b>Inactive </b>
+              <b>{window.strings.Dashboard_inactive || "Inactive"} </b>
             </h6>
           </div>
           <div className="col">

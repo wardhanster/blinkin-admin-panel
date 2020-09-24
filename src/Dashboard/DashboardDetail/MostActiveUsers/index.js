@@ -5,15 +5,15 @@ import useUsersData from "../../lib/hooks/useUsersData";
 import ButtonGroupDays from "../../lib/ButtonGroupDays";
 import {
   exportCSVFile,
-  getFormattedTime
+  getFormattedTime,
 } from "../../lib/hooks/createFileAndDownload";
 
 const mostActiveUsersHeader = [
-  "Name",
-  "Email",
-  "Country",
-  "Last Login At",
-  "Calls Count"
+  window.strings.Dashboard_name || "Name",
+  window.strings.Dashboard_email || "Email",
+  window.strings.Dashboard_country || "Country",
+  window.strings.Dashboard_lastLoginAt || "Last Login At",
+  window.strings.Dashboard_callsCount || "Calls Count",
 ];
 
 export default function MostActiveUsers({ fetchUserData }) {
@@ -33,7 +33,7 @@ export default function MostActiveUsers({ fetchUserData }) {
     }
   }, [response]);
 
-  let setClick = active => {
+  let setClick = (active) => {
     setActiveDays(active);
   };
 
@@ -46,17 +46,17 @@ export default function MostActiveUsers({ fetchUserData }) {
         email: "email",
         country: "country",
         last_login_at: "Last login at",
-        calls_count: "Calls Count"
+        calls_count: "Calls Count",
       };
 
       var itemsFormatted = [];
-      downloadResponseData.records.forEach(item => {
+      downloadResponseData.records.forEach((item) => {
         itemsFormatted.push({
           name: item.name,
           email: item.email,
           country: item.country,
           last_login_at: item.last_login_at,
-          calls_count: item.callscount
+          calls_count: item.callscount,
         });
       });
 
@@ -75,7 +75,7 @@ export default function MostActiveUsers({ fetchUserData }) {
         <div className="row mb-3">
           <div className="col">
             <h6>
-              <b>Most Active</b>
+              <b>{window.strings.Dashboard_mostActive || "Most Active"}</b>
             </h6>
           </div>
           <div className="col">

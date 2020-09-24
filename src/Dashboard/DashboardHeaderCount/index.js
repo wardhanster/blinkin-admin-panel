@@ -10,7 +10,7 @@ export default function DashboardHeaderCount({ fetchData }) {
   let [activeDays, setActiveDays] = useState(0);
   let { loading, response, error } = useDashboard(fetchData, activeDays);
 
-  let handleBtnClick = useCallback(data => {
+  let handleBtnClick = useCallback((data) => {
     setActiveDays(data);
   }, []);
 
@@ -30,7 +30,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                   }
                   onClick={() => handleBtnClick(1)}
                 >
-                  Yesterday
+                  {window.strings.Dashboard_yesterday || "Yesterday"}
                 </button>
                 <button
                   type="button"
@@ -41,7 +41,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                   }
                   onClick={() => handleBtnClick(7)}
                 >
-                  7 Days
+                  7 {window.strings.Dashboard_days || "Days"}
                 </button>
                 <button
                   type="button"
@@ -52,7 +52,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                   }
                   onClick={() => handleBtnClick(30)}
                 >
-                  30 Days
+                  30 {window.strings.Dashboard_days || "Days"}
                 </button>
                 <button
                   type="button"
@@ -63,7 +63,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                   }
                   onClick={() => handleBtnClick(90)}
                 >
-                  90 Days
+                  90 {window.strings.Dashboard_days || "Days"}
                 </button>
                 <button
                   type="button"
@@ -74,14 +74,16 @@ export default function DashboardHeaderCount({ fetchData }) {
                   }
                   onClick={() => handleBtnClick(0)}
                 >
-                  All Time
+                  {window.strings.Dashboard_days || "All Time"}
                 </button>
               </div>
             </Col>
           </Row>
           {error && (
             <div className="text-center">
-              <p>Some Error occured</p>
+              <p>
+                {window.strings.Dashboard_errorOccured || "Some Error occured"}
+              </p>
             </div>
           )}
           {loading && (
@@ -98,7 +100,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Calls Made
+                          {window.strings.Dashboard_callsMade || "Calls Made"}
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">
                           {response.calls_count}
@@ -117,7 +119,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Users Added
+                          {window.strings.Dashboard_userAdded || "Users Added"}
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">
                           {response.users_count}
@@ -136,7 +138,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Countries
+                          {window.strings.Dashboard_countries || "Countries"}
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">
                           {response.countries_count}
@@ -155,7 +157,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          SMS Sent
+                          {window.strings.Dashboard_smsSent || "SMS Sent"}
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">
                           {response.sms_count}
@@ -174,7 +176,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Emails Sent
+                          {window.strings.Dashboard_emailSent || "Emails Sent"}
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">
                           {response.email_count}
@@ -193,7 +195,8 @@ export default function DashboardHeaderCount({ fetchData }) {
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Successful Logins
+                          {window.strings.Dashboard_successLogin ||
+                            "Successful Logins"}
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">
                           {response.successful_login_count}
@@ -212,7 +215,8 @@ export default function DashboardHeaderCount({ fetchData }) {
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Failed Login
+                          {window.strings.Dashboard_failedLogin ||
+                            "Failed Login"}
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">
                           {response.failed_login_count}
@@ -231,7 +235,8 @@ export default function DashboardHeaderCount({ fetchData }) {
                     <div className="row no-gutters align-items-center">
                       <div className="col mr-2">
                         <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Inactive users
+                          {window.strings.Dashboard_inactiveUsers ||
+                            "Inactive users"}
                         </div>
                         <div className="h5 mb-0 font-weight-bold text-gray-800">
                           {response.inactive_users_count}

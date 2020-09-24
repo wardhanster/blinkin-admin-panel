@@ -7,10 +7,15 @@ import Paginator from "../../../utils/Paginator";
 
 import {
   exportCSVFile,
-  getFormattedTime
+  getFormattedTime,
 } from "../../lib/hooks/createFileAndDownload";
 
-const usersWithNoCallsHeader = ["Name", "Email", "Country", "Last Login At"];
+const usersWithNoCallsHeader = [
+  window.strings.Dashboard_name || "Name",
+  window.strings.Dashboard_email || "Email",
+  window.strings.Dashboard_country || "Country",
+  window.strings.Dashboard_lastLoginAt || "Last Login At",
+];
 
 export default function UsersWithNoCalls({ fetchUserData }) {
   const [data, setData] = useState(null);
@@ -32,15 +37,15 @@ export default function UsersWithNoCalls({ fetchUserData }) {
     }
   }, [response]);
 
-  let setClick = active => {
+  let setClick = (active) => {
     setActiveDays(active);
   };
 
-  let onPageChange = count => {
+  let onPageChange = (count) => {
     setPageno(count);
   };
 
-  let pagination = data => {
+  let pagination = (data) => {
     if (data && data.records.data.length > 0) {
       return (
         <div className="pull-right">
@@ -63,16 +68,16 @@ export default function UsersWithNoCalls({ fetchUserData }) {
         name: "Name",
         email: "Email",
         country: "Country",
-        created_at: "Created At"
+        created_at: "Created At",
       };
 
       var itemsFormatted = [];
-      downloadResponseData.records.data.forEach(item => {
+      downloadResponseData.records.data.forEach((item) => {
         itemsFormatted.push({
           name: item.name,
           email: item.email,
           country: item.country,
-          last_login_at: item.last_login_at
+          last_login_at: item.last_login_at,
         });
       });
 
@@ -87,7 +92,7 @@ export default function UsersWithNoCalls({ fetchUserData }) {
         <div className="row mb-3">
           <div className="col-3">
             <h6>
-              <b>No Calls</b>
+              <b>{window.strings.Dashboard_nocalls || "No Calls"}</b>
             </h6>
           </div>
           <div className="col">
