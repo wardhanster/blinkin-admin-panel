@@ -17,15 +17,15 @@ function Filter({ handleFilterSubmit, handleClear }) {
   const [clear, setClear] = useState(false);
   const buttonMapRef = useRef(null);
 
-  const handleInputChange = e => {
+  const handleInputChange = (e) => {
     setUserFilterData({
       ...userFilterData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
     buttonMapRef.current = true;
   };
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     e.preventDefault();
     let created_at;
     if (startDate) {
@@ -51,13 +51,13 @@ function Filter({ handleFilterSubmit, handleClear }) {
     handleClear();
   };
 
-  const handleCountry = country => {
+  const handleCountry = (country) => {
     try {
       if (country.length > 0) {
-        let countryStr = country.map(val => val.value).toString();
+        let countryStr = country.map((val) => val.value).toString();
         setUserFilterData({
           ...userFilterData,
-          country: countryStr
+          country: countryStr,
         });
         buttonMapRef.current = true;
       }
@@ -84,7 +84,9 @@ function Filter({ handleFilterSubmit, handleClear }) {
               <div className="row">
                 <div className="form-group col-sm-12">
                   <label htmlFor="ccyear">
-                    <small>Country</small>
+                    <small>
+                      {window.strings.Dashboard_country || "Country"}
+                    </small>
                   </label>
                   <DropDownSelect
                     clear={clear}
@@ -94,7 +96,7 @@ function Filter({ handleFilterSubmit, handleClear }) {
                 </div>
                 <div className="form-group col-sm-2">
                   <label htmlFor="ccmonth">
-                    <small>Name</small>
+                    <small>{window.strings.Dashboard_name || "Name"}</small>
                   </label>
                   <input
                     type="text"
@@ -106,7 +108,7 @@ function Filter({ handleFilterSubmit, handleClear }) {
                 </div>
                 <div className="form-group col-sm-2">
                   <label htmlFor="ccyear">
-                    <small>Email</small>
+                    <small>{window.strings.Dashboard_email || "Email"}</small>
                   </label>
                   <input
                     type="text"
@@ -119,7 +121,10 @@ function Filter({ handleFilterSubmit, handleClear }) {
                 <div className="col-sm-3">
                   <div className="form-group">
                     <label htmlFor="cvv">
-                      <small>Created On (End date Optional)</small>
+                      <small>
+                        {window.strings.Dashboard_cretedOn ||
+                          "Created On (End date Optional)"}
+                      </small>
                     </label>
                     {/* <input
                     className="form-control form-control-sm"
@@ -138,13 +143,13 @@ function Filter({ handleFilterSubmit, handleClear }) {
                     className="btn btn-primary btn-sm"
                     onClick={handleSearch}
                   >
-                    Search
+                    {window.strings.Dashboard_search || "Search"}
                   </button>{" "}
                   <button
                     className="btn btn-info btn-sm"
                     onClick={handleClearBtn}
                   >
-                    Clear
+                    {window.strings.Dashboard_clear || "Clear"}
                   </button>
                 </div>
               </div>

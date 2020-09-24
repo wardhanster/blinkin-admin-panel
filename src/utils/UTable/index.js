@@ -128,7 +128,7 @@ export default function UTable({
           </div>
           <div className="col-2">
             <div className="d-inline">
-              {window.strings.Dashboard_show || "Show"}
+              {window.strings.Dashboard_show || "Show"}{" "}
             </div>
             <div className="d-inline">
               <select
@@ -142,6 +142,7 @@ export default function UTable({
               </select>
             </div>
             <div className="d-inline">
+              {" "}
               {window.strings.Dashhboard_entries || "entries"}
             </div>
           </div>
@@ -183,11 +184,11 @@ export default function UTable({
                   {window.strings.Dashboard_country || "Country"}
                 </th>
                 <th>
-                  <i className="fa fa-plug" aria-hidden="true"></i>
+                  <i className="fa fa-plug" aria-hidden="true"></i>{" "}
                   {window.strings.Dashboard_ipAddress || "IP Address"}
                 </th>
                 <th>
-                  <i className="fa fa-sign-in" aria-hidden="true"></i>
+                  <i className="fa fa-sign-in" aria-hidden="true"></i>{" "}
                   {window.strings.Dashboard_activity || "Activity"}
                 </th>
               </tr>
