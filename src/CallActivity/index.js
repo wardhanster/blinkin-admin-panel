@@ -7,14 +7,14 @@ import positionOptions from "../logsCallactivity_Utils/PositionList";
 import {
   createCommaSeperatedValues,
   formatDate,
-  convertToHMS
+  convertToHMS,
 } from "../logsCallactivity_Utils/createCommaSeperatedValues";
 import DatePicker from "../logsCallactivity_Utils/DatePicker";
 import PagesButton from "../logsCallactivity_Utils/PagesButton";
 
 import "./call__activity.css";
 
-const CallActivity = props => {
+const CallActivity = (props) => {
   const { getAPI, filteringAPI } = props;
 
   const [shouldShowFilterOptions, setShowFilterOptions] = useState(false);
@@ -68,19 +68,19 @@ const CallActivity = props => {
   const toggleFilterOptions = () =>
     setShowFilterOptions(!shouldShowFilterOptions);
 
-  const handleNameChange = e => {
+  const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const handleEmailChange = e => {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleCountryChange = option => {
+  const handleCountryChange = (option) => {
     setCountry(option);
   };
 
-  const handlePositionChange = option => {
+  const handlePositionChange = (option) => {
     setPosition(option);
   };
 
@@ -96,7 +96,7 @@ const CallActivity = props => {
     setDate(date1);
   };
 
-  const handlePagination = e => {
+  const handlePagination = (e) => {
     setPaginate(e.target.value);
     setLoading(true);
     (async () => {
@@ -140,7 +140,8 @@ const CallActivity = props => {
             <td>
               <div>{content.user_name}</div>
               <div className="small text-muted">
-                Position: {content.position ? country.position : "NA"}
+                {window.strings.Dashboard_position || "Position"}:{" "}
+                {content.position ? country.position : "NA"}
               </div>
             </td>
             <td>{content.users_email}</td>
@@ -162,7 +163,7 @@ const CallActivity = props => {
                 day: "numeric",
                 year: "numeric",
                 hour: "2-digit",
-                minute: "2-digit"
+                minute: "2-digit",
               })}
             </td>
             <td>
@@ -187,7 +188,9 @@ const CallActivity = props => {
       <div className="container ml-0 border p-3 mt-3 mw-100 rounded">
         <div className="row">
           <div className="ml-3 small col-lg-3 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">Name</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_name || "Name"}
+            </h6>
             <Input
               type="text"
               placeholder="Name"
@@ -197,7 +200,9 @@ const CallActivity = props => {
             />
           </div>
           <div className="ml-3 small col-lg-3 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">Email</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_email || "Email"}
+            </h6>
             <Input
               type="text"
               placeholder="Email"
@@ -208,7 +213,7 @@ const CallActivity = props => {
           </div>
           <div className="col-lg-3 mb-2">
             <h6 className="ml-4 d-flex font-weight-bold text-muted">
-              Created On
+              {window.strings.Dashboard_createdOn || "Created On"}
             </h6>
             <DatePicker
               startDate={startDate}
@@ -217,7 +222,9 @@ const CallActivity = props => {
             />
           </div>
           <div className="ml-3 small col-lg-3 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">Country</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_country || "Country"}
+            </h6>
             <Select
               placeholder="Country"
               className="d-block text-left"
@@ -228,7 +235,9 @@ const CallActivity = props => {
             />
           </div>
           <div className="ml-3 small col-lg-3 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">Position</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_position || "Position"}
+            </h6>
             <Select
               placeholder="Position"
               className="d-block text-left"
@@ -246,7 +255,7 @@ const CallActivity = props => {
             size="sm"
             onClick={filter}
           >
-            Filter
+            {window.strings.Dashboard || "Filter"}
           </Button>
           <Button
             color="secondary"
@@ -254,7 +263,7 @@ const CallActivity = props => {
             size="sm"
             onClick={reset}
           >
-            Reset
+            {window.strings.Dashboard || "Reset"}
           </Button>
         </div>
       </div>
@@ -270,7 +279,8 @@ const CallActivity = props => {
             className="mr-2"
             onClick={toggleFilterOptions}
           >
-            {shouldShowFilterOptions ? "Hide" : "Show"} Filter Options
+            {shouldShowFilterOptions ? "Hide" : "Show"}{" "}
+            {window.strings.Dashboard_filterOptions || "Filter Options"}
           </Button>
           <Input
             type="select"
@@ -299,13 +309,21 @@ const CallActivity = props => {
                 <thead className="thead-light text-left">
                   <tr>
                     <th>#</th>
-                    <th>User</th>
-                    <th>Email</th>
-                    <th>Country</th>
-                    <th>Room Id</th>
-                    <th>To Phone Number</th>
-                    <th>Call Start Time</th>
-                    <th>Call Duration</th>
+                    <th>{window.strings.Dashboard_user || "User"}</th>
+                    <th>{window.strings.Dashboard_email || "Email"}</th>
+                    <th>{window.strings.Dashboard_country || "Country"}</th>
+                    <th>{window.strings.Dashboard_roomId || "Room Id"}</th>
+                    <th>
+                      {window.strings.Dashboard_toPhoneNumber ||
+                        "To Phone Number"}
+                    </th>
+                    <th>
+                      {window.strings.Dashboard_callStartTime ||
+                        "Call Start Time"}
+                    </th>
+                    <th>
+                      {window.strings.Dashboard_callDuration || "Call Duration"}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -314,13 +332,16 @@ const CallActivity = props => {
               </table>
             </div>
           ) : (
-            <div className="p-5">No Result Found</div>
+            <div className="p-5">
+              {window.strings.Dashboard_noResultFound || "No Result Found"}
+            </div>
           )
         ) : null}
 
         <div className="d-flex justify-content-between">
           <p className="text-left text-muted total_call_font">
-            Total calls : {callActivityData ? callActivityData.total : ""}
+            {window.strings.Dashboard_totalCalls || "Total calls"} :{" "}
+            {callActivityData ? callActivityData.total : ""}
           </p>
           <PagesButton
             data={callActivityData}
