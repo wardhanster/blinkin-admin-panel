@@ -7,7 +7,7 @@ import CountryISOModal from "../utils/CountryISOModal";
 export default function BulkUserContent(props) {
   const [active, setActive] = useState(false);
 
-  const toggleModal = status => {
+  const toggleModal = (status) => {
     setActive(status);
   };
 
@@ -19,14 +19,17 @@ export default function BulkUserContent(props) {
   return (
     <Jumbotron>
       <p>
-        If the email already exists, this will not create the user for that row.
+        {window.strings.Dashboard_emailAlready ||
+          " If the email already exists, this will not create the user for that row."}
       </p>
       <p>
-        The file should contain the following columns, without any heading row
+        {window.strings.Dashboard_theFileshould ||
+          " The file should contain the following columns, without any heading row"}
       </p>
       <b>
         name *, email *,{content === "provide_password" ? " password *," : ""}{" "}
-        country ISO code *, position
+        {window.strings.Dashboard_countryIsoCode || "country ISO code"} *,{" "}
+        {window.strings.Dashboard_position || "position"}
       </b>
       <p>
         <kbd>
@@ -42,11 +45,15 @@ export default function BulkUserContent(props) {
       </p>
       <p>
         <button className="btn btn-link" onClick={activeModal}>
-          Country ISO code Reference
+          {window.strings.Dashboard_countryIOScodeReference ||
+            "Country ISO code Reference"}
         </button>
       </p>
       <p>
-        <b>Note - * Fields are mandatory | Position is optional</b>
+        <b>
+          {window.strings.Dashboard_noteMsg ||
+            "Note - * Fields are mandatory | Position is optional"}
+        </b>
       </p>
       <CountryISOModal active={active} modalStatus={toggleModal} />
     </Jumbotron>

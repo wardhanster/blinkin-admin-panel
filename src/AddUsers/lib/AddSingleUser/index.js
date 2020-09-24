@@ -100,7 +100,9 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
         )}
 
         <FormGroup>
-          <Label htmlFor="nf-name">Name</Label>
+          <Label htmlFor="nf-name">
+            {window.strings.Dashboard_name || "Name"}
+          </Label>
           <Input
             type="text"
             id="nf-name"
@@ -115,7 +117,9 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
           )}
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="nf-email">Email</Label>
+          <Label htmlFor="nf-email">
+            {window.strings.Dashboard_email || "Email"}
+          </Label>
           <Input
             type="email"
             id="nf-email"
@@ -131,7 +135,9 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
           )}
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="nf-password">Password</Label>
+          <Label htmlFor="nf-password">
+            {window.strings.Dashboard_password || "Password"}
+          </Label>
           <div className="pb-2">
             <FormGroup check inline>
               <Input
@@ -144,7 +150,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
                 onChange={handleRadio}
               />
               <Label className="form-check-label" check htmlFor="inline-radio1">
-                Enter Password
+                {window.strings.Dashboard_enterPassword || " Enter Password"}
               </Label>
             </FormGroup>
             <FormGroup check inline>
@@ -158,7 +164,8 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
                 onChange={handleRadio}
               />
               <Label className="form-check-label" check htmlFor="inline-radio2">
-                Send Password Generation link to User's Email
+                {window.strings.Dashboard_sendPassword ||
+                  "Send Password Generation link to User's Email"}
               </Label>
             </FormGroup>
           </div>
@@ -176,7 +183,9 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
           )}
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="nf-position">Position</Label>
+          <Label htmlFor="nf-position">
+            {window.strings.Dasboard_position || "Position"}
+          </Label>
           <Input
             type="text"
             id="nf-position"
@@ -187,7 +196,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
           />
         </FormGroup>
         <FormGroup>
-          <Label>Country</Label>
+          <Label>{window.strings.Dashboard_country || "Country"}</Label>
           <Select
             name="userCountryCode"
             options={countryJson}
@@ -204,12 +213,12 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
           <Row>
             <Col>
               <Button color="primary" block>
-                Submit
+                {window.strings.Dashboard_submit || "Submit"}
               </Button>
             </Col>
             <Col>
               <Button color="info" block onClick={handleInputClear}>
-                Clear
+                {window.strings.Dashboard_clear || "Clear"}
               </Button>
             </Col>
           </Row>

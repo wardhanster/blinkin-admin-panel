@@ -6,7 +6,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container
+  Container,
 } from "reactstrap";
 import classnames from "classnames";
 
@@ -17,10 +17,10 @@ import AddBulkUsers from "./lib/AddBulkUsers";
 
 export default function AddUsers({
   handleSingleUserAPI,
-  handleBulkUploadFile
+  handleBulkUploadFile,
 }) {
   const [activeTab, setActiveTab] = useState("1");
-  const toggle = tab => {
+  const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
@@ -34,7 +34,7 @@ export default function AddUsers({
               toggle("1");
             }}
           >
-            Add Single User{" "}
+            {window.strings.Dashboard_addSingleUser || "Add Single User"}{" "}
             <i className="fa fa-user fi-color" aria-hidden="true"></i>
           </NavLink>
         </NavItem>
@@ -45,7 +45,7 @@ export default function AddUsers({
               toggle("2");
             }}
           >
-            Add Bulk Users{" "}
+            {window.strings.Dashboard_addBulkUsers || "Add Bulk Users"}{" "}
             <i className="fa fa-users fi-color" aria-hidden="true"></i>
           </NavLink>
         </NavItem>

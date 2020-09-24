@@ -5,7 +5,7 @@ import {
   ModalFooter,
   ModalHeader,
   Button,
-  Table
+  Table,
 } from "reactstrap";
 
 import countryOptions from "../../../utils/CountryOptions";
@@ -25,13 +25,15 @@ export default function CountryISOModal(props) {
   return (
     <div>
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Country ISO Code</ModalHeader>
+        <ModalHeader toggle={toggle}>
+          {window.strings.Dashboard_countryIosCode || "Country ISO Code"}
+        </ModalHeader>
         <ModalBody>
           <Table>
             <thead>
               <tr>
-                <th>Country</th>
-                <th>ISO Code</th>
+                <th>{window.strings.Dashboard_country || "Country"}</th>
+                <th>{window.strings.Dashboard_iosCode || "ISO Code"}</th>
               </tr>
             </thead>
             <tbody>
@@ -48,7 +50,7 @@ export default function CountryISOModal(props) {
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>
-            Cancel
+            {window.strings.Dashboard_cancel || "Cancel"}
           </Button>
         </ModalFooter>
       </Modal>
