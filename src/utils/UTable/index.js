@@ -21,7 +21,7 @@ export default function UTable({
   handleDelete,
   handleFilterSubmit,
   showFilter,
-  handleClear
+  handleClear,
 }) {
   const [userData, setUserData] = useState(data ? data[0].data : []);
   const [isOpen, setIsOpen] = useState(false);
@@ -57,7 +57,7 @@ export default function UTable({
       setListId([...listId, id]);
     } else {
       setSelectAll(false);
-      setListId(listId.filter(item => item !== id));
+      setListId(listId.filter((item) => item !== id));
     }
   };
   const handleClearCheckBox = () => {
@@ -70,7 +70,7 @@ export default function UTable({
     } else {
       setSelectAll(true);
       let ids = [];
-      userData.forEach(user => {
+      userData.forEach((user) => {
         ids.push(user.id);
       });
       setListId(ids);
@@ -90,7 +90,7 @@ export default function UTable({
     setDeleteModal(false);
   };
 
-  const handleFilterbtn = data => {
+  const handleFilterbtn = (data) => {
     setShowLoading(true);
     handleFilterSubmit(data);
   };
@@ -100,12 +100,12 @@ export default function UTable({
     handleClear();
   };
 
-  const handlePageNumber = num => {
+  const handlePageNumber = (num) => {
     setShowLoading(true);
     handlePageNumberSubmit(num);
   };
 
-  const handlePerPageBtn = e => {
+  const handlePerPageBtn = (e) => {
     setShowLoading(true);
     handlePerPage(e.target.value);
   };
@@ -116,18 +116,20 @@ export default function UTable({
         <div className="row mt-3 mb-3">
           <div className="col-10">
             <button className="btn btn-primary btn-sm" onClick={toggle}>
-              Filter
+              {window.strings.Dashboard_filter || "Filter"}
             </button>{" "}
             <button
               className="btn btn-danger btn-sm"
               disabled={deleteBtnStatus}
               onClick={handleDeleteBtn}
             >
-              Delete
+              {window.strings.Dashboard_delete || "Delete"}
             </button>
           </div>
           <div className="col-2">
-            <div className="d-inline">Show </div>
+            <div className="d-inline">
+              {window.strings.Dashboard_show || "Show"}
+            </div>
             <div className="d-inline">
               <select
                 className="form-control-sm"
@@ -139,7 +141,9 @@ export default function UTable({
                 <option value="50">50</option>
               </select>
             </div>
-            <div className="d-inline"> entries</div>
+            <div className="d-inline">
+              {window.strings.Dashhboard_entries || "entries"}
+            </div>
           </div>
         </div>
         <Collapse isOpen={isOpen}>
@@ -167,25 +171,30 @@ export default function UTable({
                   </label>
                 </th>
                 <th>
-                  <i className="fa fa-user" aria-hidden="true" /> User
+                  <i className="fa fa-user" aria-hidden="true" />{" "}
+                  {window.strings.Dashboard_user || "User"}
                 </th>
                 <th>
-                  <i className="fa fa-envelope" aria-hidden="true" /> Email
+                  <i className="fa fa-envelope" aria-hidden="true" />{" "}
+                  {window.strings.Dashboard_email || "Email"}
                 </th>
                 <th className="text-center">
-                  <i className="fa fa-globe" aria-hidden="true"></i> Country
+                  <i className="fa fa-globe" aria-hidden="true"></i>{" "}
+                  {window.strings.Dashboard_country || "Country"}
                 </th>
                 <th>
-                  <i className="fa fa-plug" aria-hidden="true"></i> IP Address
+                  <i className="fa fa-plug" aria-hidden="true"></i>
+                  {window.strings.Dashboard_ipAddress || "IP Address"}
                 </th>
                 <th>
-                  <i className="fa fa-sign-in" aria-hidden="true"></i> Activity
+                  <i className="fa fa-sign-in" aria-hidden="true"></i>
+                  {window.strings.Dashboard_activity || "Activity"}
                 </th>
               </tr>
             </thead>
             <tbody>
               {data &&
-                userData.map(user => {
+                userData.map((user) => {
                   return (
                     <tr
                       className={
@@ -201,7 +210,7 @@ export default function UTable({
                               listId.indexOf(user.id) > -1 ? true : false
                             }
                             value={user.id}
-                            onChange={e => handleCheckBox(user.id, e)}
+                            onChange={(e) => handleCheckBox(user.id, e)}
                           />
                           <span></span>
                         </label>
@@ -216,7 +225,7 @@ export default function UTable({
                               {user.position} {" | "}
                             </span>
                           )}
-                          Registered :{" "}
+                          {window.strings.Dasboard_registered || "Registered"} :{" "}
                           {showMonthDateYear(new Date(user.created_at))}
                         </div>
                       </td>
@@ -231,7 +240,9 @@ export default function UTable({
                         {user.last_active_ip ? user.last_active_ip : "NA"}
                       </td>
                       <td>
-                        <div className="small text-muted">Last login</div>
+                        <div className="small text-muted">
+                          {window.strings.Dashboard_lastLogin || "Last login"}
+                        </div>
                         <strong
                           title={
                             user.last_active_at ? user.last_active_at : "NA"
@@ -249,7 +260,9 @@ export default function UTable({
           </table>
           {userData && userData.length <= 0 ? (
             <div className="text-center mt-4">
-              <p>No results Found</p>
+              <p>
+                {window.strings.Dashboard_noResultFound || "No Result Found"}
+              </p>
             </div>
           ) : (
             ""
@@ -262,8 +275,9 @@ export default function UTable({
           <div className="col">
             <p className="text-muted">
               <small>
-                Page {data[0].current_page} of {data[0].last_page} ({" "}
-                {data[0].total} Users)
+                {window.strings.Dashboard_page || "Page"} {data[0].current_page}{" "}
+                of {data[0].last_page} ( {data[0].total}{" "}
+                {window.strings.Dashboard_users || "Users"})
               </small>
             </p>
           </div>
@@ -271,7 +285,7 @@ export default function UTable({
             <Paginator
               maxClickableCells={5}
               paginatorData={data[0]}
-              pageNumberSelect={count => handlePageNumber(count)}
+              pageNumberSelect={(count) => handlePageNumber(count)}
             />
           </div>
         </div>
