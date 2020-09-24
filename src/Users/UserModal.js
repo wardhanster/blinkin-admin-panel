@@ -97,7 +97,8 @@ export default function UserModal({
     <div>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>
-          User - {modalLoading ? "..." : userData ? userData.name : ""}
+          {window.strings.Dashboard_user || "User"} -{" "}
+          {modalLoading ? "..." : userData ? userData.name : ""}
         </ModalHeader>
         {modalLoading ? (
           <div className="mb-5 mt-4">
