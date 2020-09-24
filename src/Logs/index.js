@@ -6,22 +6,41 @@ import positionOptions from "../logsCallactivity_Utils/PositionList";
 import countryOptions from "../utils/CountryOptions";
 import {
   createCommaSeperatedValues,
-  formatDate
+  formatDate,
 } from "../logsCallactivity_Utils/createCommaSeperatedValues";
 import DatePicker from "../logsCallactivity_Utils/DatePicker";
 import PagesButton from "../logsCallactivity_Utils/PagesButton";
 import "./log.css";
 
 const logTypeOptions = [
-  { value: "Link sent by SMS", label: "Link Sent By SMS" },
-  { value: "Successful login", label: "Successful Login" },
-  { value: "Failed Login", label: "Failed Login" },
-  { value: "Link sent by email", label: "Link Sent By Email" },
-  { value: "Beam link sent by SMS", label: "Beam Link Sent By SMS" },
-  { value: "Beam link sent by email", label: "Beam Link Sent By Email" }
+  {
+    value: "Link sent by SMS",
+    label: window.strings.Dashboard_linkSentMsg || "Link Sent By SMS",
+  },
+  {
+    value: "Successful login",
+    label: window.strings.Dashboard_successfulLogin || "Successful Login",
+  },
+  {
+    value: "Failed Login",
+    label: window.strings.Dashboard_failedLogin || "Failed Login",
+  },
+  {
+    value: "Link sent by email",
+    label: window.strings.Dashboard_linkSentEmail || "Link Sent By Email",
+  },
+  {
+    value: "Beam link sent by SMS",
+    label: window.strings.Dashboard_beamLinkSentMsg || "Beam Link Sent By SMS",
+  },
+  {
+    value: "Beam link sent by email",
+    label:
+      window.strings.Dashboard_beamLinkSentEmail || "Beam Link Sent By Email",
+  },
 ];
 
-const Logs = props => {
+const Logs = (props) => {
   const { getAPI, filteringAPI } = props;
 
   const [logsData, setLogsData] = useState(null);
@@ -48,19 +67,19 @@ const Logs = props => {
     })();
   }, []);
 
-  const handleLogTypeChange = option => {
+  const handleLogTypeChange = (option) => {
     setLogType(option);
   };
 
-  const handleNameChange = e => {
+  const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const handleEmailChange = e => {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleIPChange = e => {
+  const handleIPChange = (e) => {
     setIP(e.target.value);
   };
 
@@ -76,11 +95,11 @@ const Logs = props => {
     setDate(date1);
   };
 
-  const handleCountryChange = option => {
+  const handleCountryChange = (option) => {
     setCountry(option);
   };
 
-  const handlePositionChange = option => {
+  const handlePositionChange = (option) => {
     setPosition(option);
   };
 
@@ -126,7 +145,7 @@ const Logs = props => {
     setShowFilterOptions(!shouldShowFilterOptions);
   };
 
-  const handlePagination = e => {
+  const handlePagination = (e) => {
     setPaginate(e.target.value);
     setLoading(true);
     (async () => {
@@ -155,13 +174,13 @@ const Logs = props => {
           <td>
             <div>{content.user_name}</div>
             <div className="small text-muted">
-              Registered:{" "}
+              {window.strings.Dashboard_registered || "Registered"}:{" "}
               {created_at.toLocaleDateString("en-GB", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",
                 hour: "2-digit",
-                minute: "2-digit"
+                minute: "2-digit",
               })}
             </div>
           </td>
@@ -190,7 +209,9 @@ const Logs = props => {
       <div className="container ml-0 border p-3 mt-3 mw-100 rounded">
         <div className="row">
           <div className="ml-3 small col-lg-5 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">Log Type</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_logType || "Log Type"}
+            </h6>
             <Select
               placeholder="Log Type"
               className="d-block text-left"
@@ -201,7 +222,9 @@ const Logs = props => {
             />
           </div>
           <div className="ml-3 small col-lg-3 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">Name</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_name || "Name"}
+            </h6>
             <Input
               type="text"
               placeholder="Name"
@@ -211,7 +234,9 @@ const Logs = props => {
             />
           </div>
           <div className="ml-3 small col-lg-3 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">Email</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_email || "Email"}
+            </h6>
             <Input
               type="text"
               placeholder="Email"
@@ -221,7 +246,9 @@ const Logs = props => {
             />
           </div>
           <div className="ml-3 small col-lg-2 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">IP</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_ip || "IP"}
+            </h6>
             <Input
               type="text"
               className="d-block"
@@ -230,7 +257,9 @@ const Logs = props => {
             />
           </div>
           <div className="d-flex flex-column align-items-start col-lg-3  mb-2">
-            <h6 className="font-weight-bold text-muted">Created On</h6>
+            <h6 className="font-weight-bold text-muted">
+              {window.strings.Dashboard_createdOn || "Created On"}
+            </h6>
             <DatePicker
               startDate={startDate}
               endDate={endDate}
@@ -238,7 +267,9 @@ const Logs = props => {
             />
           </div>
           <div className="ml-3 small col-lg-3 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">Country</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_country || "Country"}
+            </h6>
             <Select
               placeholder="Country"
               className="d-block text-left"
@@ -249,7 +280,9 @@ const Logs = props => {
             />
           </div>
           <div className="ml-3 small col-lg-3 mb-2">
-            <h6 className="d-flex font-weight-bold text-muted">Position</h6>
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.Dashboard_position || "Position"}
+            </h6>
             <Select
               placeholder="Position"
               className="d-block text-left"
@@ -267,7 +300,7 @@ const Logs = props => {
             size="sm"
             onClick={filter}
           >
-            Filter
+            {window.strings.Dashboard_filter || "Filter"}
           </Button>
           <Button
             color="secondary"
@@ -275,7 +308,7 @@ const Logs = props => {
             size="sm"
             onClick={reset}
           >
-            Reset
+            {window.strings.Dashboard_reset || "Reset"}
           </Button>
         </div>
       </div>
@@ -291,7 +324,8 @@ const Logs = props => {
             className="d-flex"
             onClick={toggleFilterOptions}
           >
-            {shouldShowFilterOptions ? "Hide" : "Show"} Filter Options
+            {shouldShowFilterOptions ? "Hide" : "Show"}{" "}
+            {window.strings.Dashboard_filterOptions || "Filter Options"}
           </Button>
           <Input
             type="select"
@@ -318,24 +352,31 @@ const Logs = props => {
               <table className="table-outline mb-0 d-none d-sm-table table table-hover overflow-auto">
                 <thead className="thead-light text-left">
                   <tr>
-                    <th>User</th>
-                    <th>Email</th>
-                    <th>Country</th>
-                    <th>Position</th>
-                    <th>IP Address</th>
-                    <th>Event Type</th>
+                    <th>{window.strings.Dashboard_user || "User"}</th>
+                    <th>{window.strings.Dashboard_email || "Email"}</th>
+                    <th>{window.strings.Dashboard_country || "Country"}</th>
+                    <th>{window.strings.Dashboard_position || "Position"}</th>
+                    <th>
+                      {window.strings.Dashboard_ipAddress || "IP Address"}
+                    </th>
+                    <th>
+                      {window.strings.Dashboard_eventType || "Event Type"}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>{tableContent}</tbody>
               </table>
             </div>
           ) : (
-            <div className="p-5">No Result Found</div>
+            <div className="p-5">
+              {window.strings.Dashboard_noResultFound || "No Result Found"}
+            </div>
           )
         ) : null}
         <div className="d-flex justify-content-between">
           <p className="text-left text-muted total_call_font">
-            Total Logs : {logsData ? logsData.total : ""}
+            {window.strings.Dashboard_totalLogs || "Total Logs"} :{" "}
+            {logsData ? logsData.total : ""}
           </p>
           <PagesButton
             data={logsData}
