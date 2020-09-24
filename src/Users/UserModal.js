@@ -9,7 +9,7 @@ import {
   Form,
   Label,
   Input,
-  FormGroup
+  FormGroup,
 } from "reactstrap";
 import Loader from "../utils/Loader";
 import { showMonthDateYear } from "../utils/DateHandle";
@@ -21,7 +21,7 @@ const userInitialData = {
   name: "",
   email: "",
   position: "",
-  country: ""
+  country: "",
 };
 
 export default function UserModal({
@@ -29,7 +29,7 @@ export default function UserModal({
   toggleModal,
   userDetails,
   modalLoading,
-  updateUserDetails
+  updateUserDetails,
 }) {
   const [modal, setModal] = useState(false);
   const [userData, setUserData] = useState(userInitialData);
@@ -45,14 +45,14 @@ export default function UserModal({
     // debugger;
     setUserData(userInitialData);
     toggleModal(!modal);
-    setModal(modal => !modal);
+    setModal((modal) => !modal);
   };
 
   useEffect(() => {
     setModal(active);
   }, [active]);
 
-  const handleChangeInput = e => {
+  const handleChangeInput = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
@@ -76,7 +76,7 @@ export default function UserModal({
       let newUpdatedUser = {
         name: userData.name,
         userCountry: userData.country,
-        position: userData.position
+        position: userData.position,
       };
       if (password && password.length >= 6) {
         newUpdatedUser.password = password;
@@ -85,12 +85,12 @@ export default function UserModal({
     }
   };
 
-  const handleCountrySelect = val => {
+  const handleCountrySelect = (val) => {
     setUserData({ ...userData, country: val.value });
   };
 
-  const setDefaultOptions = defaultVal => {
-    return countryOptions.find(element => element.value === defaultVal);
+  const setDefaultOptions = (defaultVal) => {
+    return countryOptions.find((element) => element.value === defaultVal);
   };
 
   return (
@@ -110,7 +110,9 @@ export default function UserModal({
                 <ModalBody>
                   <Form>
                     <FormGroup>
-                      <Label for="name">Name</Label>
+                      <Label for="name">
+                        {window.strings.Dashboard_name || "Name"}
+                      </Label>
                       <Input
                         type="text"
                         name="name"
@@ -123,7 +125,9 @@ export default function UserModal({
                       )}
                     </FormGroup>
                     <FormGroup>
-                      <Label for="name">Email</Label>
+                      <Label for="name">
+                        {window.strings.Dashboard_email || "Email"}
+                      </Label>
                       <Input
                         type="text"
                         name="email"
@@ -134,18 +138,25 @@ export default function UserModal({
                     </FormGroup>
                     <FormGroup>
                       <Label for="password">
-                        Password{" "}
-                        <small>( Leave blank to keep existing password )</small>
+                        {window.strings.Dashboard_password || "Password"}{" "}
+                        <small>
+                          ({" "}
+                          {window.strings.Dashboard_leaveBlankPassword ||
+                            "Leave blank to keep existing password"}{" "}
+                          )
+                        </small>
                       </Label>
                       <Input
                         type="password"
                         name="password"
                         value={password || ""}
-                        onChange={e => setPassword(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </FormGroup>
                     <FormGroup>
-                      <Label for="name">Country</Label>
+                      <Label for="name">
+                        {window.strings.Dashboard_country || "Country"}
+                      </Label>
                       <Suspense fallback={<div>loading ...</div>}>
                         <DropDownSelect
                           defaultSelect={setDefaultOptions(userData.country)}
@@ -163,7 +174,9 @@ export default function UserModal({
                       )}
                     </FormGroup>
                     <FormGroup>
-                      <Label for="name">Position</Label>
+                      <Label for="name">
+                        {window.strings.Dashboard_position || "Position"}
+                      </Label>
                       <Input
                         type="text"
                         name="position"
@@ -175,7 +188,7 @@ export default function UserModal({
                   </Form>
                   <p>
                     <small>
-                      Last Update -{" "}
+                      {window.strings.Dashboard_lastUpdate || "Last Update"} -{" "}
                       {showMonthDateYear(new Date(userDetails.updated_at))}
                     </small>
                   </p>
@@ -183,15 +196,15 @@ export default function UserModal({
 
                 <ModalFooter>
                   <Button color="primary" onClick={updateForm}>
-                    Update
+                    {window.strings.Dashboard_update || "Update"}
                   </Button>
                   <Button color="secondary" onClick={toggle}>
-                    Cancel
+                    {window.strings.Dashboard_cancel || "Cancel"}
                   </Button>
                 </ModalFooter>
               </>
             ) : (
-              "User Not Found"
+              window.strings.Dashboard_userNotFound || "User Not Found"
             )}
           </>
         )}
