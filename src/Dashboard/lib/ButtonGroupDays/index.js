@@ -56,7 +56,7 @@ export default function ButtonGroupDays(props) {
         }
         onClick={() => handleBtnClick(0)}
       >
-        {window.strings.Dashboard_days || "All Time"}
+        {window.strings.Dashboard_allTime || "All Time"}
       </button>
     </div>
   );

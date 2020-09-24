@@ -70,7 +70,9 @@ export default function AdminTable(props) {
         </Table>
       )}
       {data && data.length <= 0 ? (
-        <div className="text-center">No result found</div>
+        <div className="text-center">
+          {window.strings.Dashboard_noResultFound || "No result found"}
+        </div>
       ) : (
         ""
       )}

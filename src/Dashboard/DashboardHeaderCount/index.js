@@ -74,7 +74,7 @@ export default function DashboardHeaderCount({ fetchData }) {
                   }
                   onClick={() => handleBtnClick(0)}
                 >
-                  {window.strings.Dashboard_days || "All Time"}
+                  {window.strings.Dashboard_allTime || "All Time"}
                 </button>
               </div>
             </Col>
