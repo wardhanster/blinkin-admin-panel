@@ -122,7 +122,7 @@ function Filter({ handleFilterSubmit, handleClear }) {
                   <div className="form-group">
                     <label htmlFor="cvv">
                       <small>
-                        {window.strings.Dashboard_cretedOn ||
+                        {window.strings.Dashboard_cretedOnEndDate ||
                           "Created On (End date Optional)"}
                       </small>
                     </label>
