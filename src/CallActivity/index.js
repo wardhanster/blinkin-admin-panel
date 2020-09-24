@@ -255,7 +255,7 @@ const CallActivity = (props) => {
             size="sm"
             onClick={filter}
           >
-            {window.strings.Dashboard || "Filter"}
+            {window.strings.Dashboard_filter || "Filter"}
           </Button>
           <Button
             color="secondary"
@@ -263,7 +263,7 @@ const CallActivity = (props) => {
             size="sm"
             onClick={reset}
           >
-            {window.strings.Dashboard || "Reset"}
+            {window.strings.Dashboard_reset || "Reset"}
           </Button>
         </div>
       </div>
