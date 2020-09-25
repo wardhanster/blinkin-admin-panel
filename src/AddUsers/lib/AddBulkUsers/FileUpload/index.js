@@ -88,12 +88,12 @@ export default function FileUpload({ uploadFiles, clearAll }) {
             onClick={handleFileUpload}
             ref={btnRef}
           >
-            Upload
+            {window.strings.Dashboard_upload || "Upload"}
           </button>
         </div>
         <div className="col">
           <button className="btn btn-info btn-block mt-4" onClick={clearUpload}>
-            Clear
+            {window.strings.Dashboard_clear || "Clear"}
           </button>
         </div>
       </div>
