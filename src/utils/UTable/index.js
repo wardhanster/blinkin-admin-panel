@@ -283,7 +283,7 @@ export default function UTable({
             <p className="text-muted">
               <small>
                 {window.strings.Dashboard_page || "Page"} {data[0].current_page}{" "}
-                {window.string.Dashboard_of || "of"} {data[0].last_page} ({" "}
+                {window.strings.Dashboard_of || "of"} {data[0].last_page} ({" "}
                 {data[0].total} {window.strings.Dashboard_users || "Users"})
               </small>
             </p>
