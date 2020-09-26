@@ -1,27 +1,34 @@
 export default function validate(values, passType) {
   let errors = {};
   if (!values.email) {
-    errors.email = "Email address is required";
+    errors.email =
+      window.strings.Dashboard_emailRequired || "Email address is required";
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-    errors.email = "Email address is invalid";
+    errors.email = window.strings.emailInvalid || "Email address is invalid";
   }
   if (passType) {
     if (!values.password) {
-      errors.password = "Password is required";
+      errors.password =
+        window.strings.Dashboard_passwordRequired || "Password is required";
     } else if (values.password.length < 7) {
-      errors.password = "Password must be 6 or more characters";
+      errors.password =
+        window.strings.Dashboard_passwordCases ||
+        "Password must be 6 or more characters";
     }
   }
 
   if (!values.name) {
-    errors.name = "Name is required";
+    errors.name = window.strings.Dashboard_nameRequired || "Name is required";
   } else if (values.name.length < 3) {
-    errors.name = "Name Minumum 3 Characters";
+    errors.name =
+      window.strings.Dashboard_nameCases || "Name Minumum 3 Characters";
   }
   if (!values.userCountryCode) {
-    errors.country = "Country is required";
+    errors.country =
+      window.strings.Dashboard_countryRequired || "Country is required";
   } else if (!values.userCountryCode.label && !values.userCountryCode.value) {
-    errors.country = "Country is required";
+    errors.country =
+      window.strings.Dashboard_countryRequired || "Country is required";
   }
 
   return errors;

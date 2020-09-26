@@ -12,14 +12,14 @@ const initial = {
   pageNum: 1,
   refresh: false,
   searchTerms: null,
-  clearAll: false
+  clearAll: false,
 };
 
 export default function Users({
   fetchAPI,
   fetchUserById,
   updateUserData,
-  deleteUsers
+  deleteUsers,
 }) {
   let [activeModal, setActiveModal] = useState(false);
   let [userData, setUserData] = useState(null);
@@ -78,16 +78,16 @@ export default function Users({
     callAPI(true);
   }, []);
 
-  const handlePerPage = value => {
+  const handlePerPage = (value) => {
     setMain({ ...main, perPage: value });
   };
 
-  const handlePageNumberSubmit = pageNum => {
+  const handlePageNumberSubmit = (pageNum) => {
     setMain({ ...main, pageNum });
   };
 
-  const handleUserView = async id => {
-    setActiveModal(activeModal => !activeModal);
+  const handleUserView = async (id) => {
+    setActiveModal((activeModal) => !activeModal);
     setModalLoading(true);
     let user = await fetchUserById(id);
     if (user.success) {
@@ -96,7 +96,7 @@ export default function Users({
     }
   };
 
-  const handleResponseError = msg => {
+  const handleResponseError = (msg) => {
     setMsg(msg);
     setSnackbarShow(true);
     setTimeout(() => {
@@ -111,8 +111,8 @@ export default function Users({
     if (res) {
       setModalLoading(false);
       setActiveModal(false);
-      setRefresh(refresh => !refresh);
-      setMsg("Updated Successfully");
+      setRefresh((refresh) => !refresh);
+      setMsg(window.strings.Dashboard_updatedSuccess || "Updated Successfully");
       setSnackbarShow(true);
       setTimeout(() => {
         setMsg(null);
@@ -121,15 +121,15 @@ export default function Users({
     }
   };
 
-  const toggleModal = val => {
+  const toggleModal = (val) => {
     setActiveModal(val);
   };
 
   const handleDelete = async (ids, callback) => {
     let deleteRes = await deleteUsers(ids);
     if (deleteRes.success) {
-      setRefresh(refresh => !refresh);
-      setMsg("Deleted Successfully");
+      setRefresh((refresh) => !refresh);
+      setMsg(window.strings.Dashboard_deletedSuccess || "Deleted Successfully");
       setSnackbarShow(true);
       setTimeout(() => {
         setMsg(null);
@@ -146,7 +146,7 @@ export default function Users({
     }
   };
 
-  const handleFilterSubmit = data => {
+  const handleFilterSubmit = (data) => {
     setShowFilter(true);
     // setSearchTerms(data);
     setMain({ ...main, searchTerms: data });

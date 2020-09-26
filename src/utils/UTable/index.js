@@ -5,7 +5,11 @@ import Paginator from "../Paginator";
 
 import Loader from "../Loader";
 
-import { showMonthDateYear, dateToHowManyAgo } from "../DateHandle";
+import {
+  showMonthDateYear,
+  dateToHowManyAgo,
+  translateDateTime,
+} from "../DateHandle";
 
 import DeleteConfirmation from "../DeleteConfirmation";
 import Filter from "../../Users/Filter";
@@ -250,7 +254,9 @@ export default function UTable({
                           }
                         >
                           {user.last_active_at
-                            ? dateToHowManyAgo(user.last_active_at)
+                            ? translateDateTime(
+                                dateToHowManyAgo(user.last_active_at)
+                              )
                             : "NA"}
                         </strong>
                       </td>
@@ -277,8 +283,8 @@ export default function UTable({
             <p className="text-muted">
               <small>
                 {window.strings.Dashboard_page || "Page"} {data[0].current_page}{" "}
-                of {data[0].last_page} ( {data[0].total}{" "}
-                {window.strings.Dashboard_users || "Users"})
+                {window.string.Dashboard_of || "of"} {data[0].last_page} ({" "}
+                {data[0].total} {window.strings.Dashboard_users || "Users"})
               </small>
             </p>
           </div>

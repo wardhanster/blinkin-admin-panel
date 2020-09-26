@@ -21,7 +21,10 @@ export default function FileUpload({ uploadFiles, clearAll }) {
     if (newFileType) {
       if (fileType !== "txt" && fileType !== "csv") {
         inputRef.current.value = null;
-        setErrorMsg("Invalid file type, please upload only csv, txt format");
+        setErrorMsg(
+          window.strings.Dashboard_invalidFileType ||
+            "Invalid file type, please upload only csv, txt format"
+        );
       }
     }
     if (!newFileType) {
@@ -30,12 +33,18 @@ export default function FileUpload({ uploadFiles, clearAll }) {
         e.target.files[0].type !== "text/plain"
       ) {
         inputRef.current.value = null;
-        setErrorMsg("Invalid file type, please upload only csv, txt format");
+        setErrorMsg(
+          window.strings.Dashboard_invalidFileType ||
+            "Invalid file type, please upload only csv, txt format"
+        );
       }
     }
     try {
       if (e.target.files[0].size > filesize) {
-        setErrorMsg("Your file size is over limit. Max upload size is 10MB");
+        setErrorMsg(
+          window.strings.Dashboard_maximumFileSize ||
+            "Your file size is over limit. Max upload size is 10MB"
+        );
         inputRef.current.value = null;
       } else {
         setFiles(e.target.files);
@@ -51,7 +60,9 @@ export default function FileUpload({ uploadFiles, clearAll }) {
       btnRef.current.disabled = true;
       uploadFiles(files);
     } else {
-      setErrorMsg("File does not exist");
+      setErrorMsg(
+        window.strings.Dashboard_fileDoesNotExist || "File does not exist"
+      );
     }
   };
 
