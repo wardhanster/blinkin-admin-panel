@@ -10,7 +10,7 @@ export default function validate(values, passType) {
     if (!values.password) {
       errors.password =
         window.strings.Dashboard_passwordRequired || "Password is required";
-    } else if (values.password.length < 7) {
+    } else if (values.password.length < 6) {
       errors.password =
         window.strings.Dashboard_passwordCases ||
         "Password must be 6 or more characters";
