@@ -70,6 +70,13 @@ export default function UserModal({
       errors.country = "Enter Proper ISO code";
     }
 
+    if (password) {
+      if (password.length === 0 || password.length >= 6) {
+      } else {
+        errors.password = "Password should be greater then 6 Character";
+      }
+    }
+
     setUserError(errors);
 
     if (Object.keys(errors).length === 0) {
@@ -153,6 +160,11 @@ export default function UserModal({
                         value={password || ""}
                         onChange={(e) => setPassword(e.target.value)}
                       />
+                      {userError.password && (
+                        <small className="text-danger">
+                          {userError.password}
+                        </small>
+                      )}
                     </FormGroup>
                     <FormGroup>
                       <Label for="name">
