@@ -17,11 +17,12 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "@wojtekmaj/react-daterange-picker": "^3.0.0",
     "bootstrap": "^4.4.1",
     "react": "^16.8.6",
-    "reactstrap": "^8.4.1",
+    "react-dates": "21.8.0",
     "react-select": "^3.1.0",
-    "react-dates": "21.8.0"
+    "reactstrap": "^8.4.1"
   },
   "author": "",
   "license": "ISC"
