@@ -15,19 +15,20 @@ const detailBoardURL = `${baseURL}get-dashboard?duration=`;
 const usersWithNoCallsURL = `${baseURL}get-users-with-no-calls?paginate=5&duration=`;
 const inActiveUsersURL = `${baseURL}get-inactive-users?paginate=5&duration=`;
 const mostActiveUsersURL = `${baseURL}get-most-active-users?duration=`;
+const fetchMetricsURL = `${baseURL}get-typeform-metrics`;
 
 const urls = {
   userswithnocalls: usersWithNoCallsURL,
   inactiveusers: inActiveUsersURL,
-  mostactiveUsers: mostActiveUsersURL
+  mostactiveUsers: mostActiveUsersURL,
 };
 
 function App() {
-  let fetchData = async type => {
+  let fetchData = async (type) => {
     let url = `${detailBoardURL}${type}`;
     let response = await fetch(url, {
       method: "GET",
-      headers: myHeaders
+      headers: myHeaders,
     });
     return await response.json();
   };
@@ -41,14 +42,34 @@ function App() {
     }
     let response = await fetch(url, {
       method: "GET",
-      headers: myHeaders
+      headers: myHeaders,
+    });
+    return await response.json();
+  };
+
+  let fetchMetrics = async (filterData) => {
+    let url;
+    if (filterData) {
+      url = `${fetchMetricsURL}?filters=${encodeURIComponent(
+        JSON.stringify(filterData)
+      )}`;
+    } else {
+      url = fetchMetricsURL;
+    }
+    let response = await fetch(url, {
+      method: "GET",
+      headers: myHeaders,
     });
     return await response.json();
   };
 
   return (
     <>
-      <Dashboard fetchData={fetchData} fetchUserData={fetchUserData} />
+      <Dashboard
+        fetchData={fetchData}
+        fetchUserData={fetchUserData}
+        fetchMetrics={fetchMetrics}
+      />
     </>
   );
 }
