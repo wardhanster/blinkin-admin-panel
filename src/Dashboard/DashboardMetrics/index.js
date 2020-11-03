@@ -44,10 +44,20 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
   };
 
   const onChange = (date, type) => {
-    var data = {
-      [type]: `${dateFormat(date[0])} to ${dateFormat(date[1])}`,
-    };
-    setQuery({ ...query, ...data });
+    if (date && type) {
+      var data = {
+        [type]: `${dateFormat(date[0])} to ${dateFormat(date[1])}`,
+      };
+      setQuery({ ...query, ...data });
+    } else if (!date) {
+      try {
+        let Cquery = { ...query };
+        delete Cquery[type];
+        setQuery(Cquery);
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
 
   const carbonCalculation = (e) => {
