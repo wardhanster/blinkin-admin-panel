@@ -419,7 +419,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                       <div className="card-body">
                         <div className="form-inline">
                           <div className="form-group mt-3 mr-3">
-                            <label htmlFor="avTravel" className="mr-2">
+                            <label htmlFor="avTravel" className="">
                               Average Travel Distance per Dispatch:
                             </label>
                             <input
@@ -429,6 +429,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                               placeholder="enter distance"
                               onChange={(e) => carbonCalculation(e)}
                             />
+                            <span className="small">KM</span>
                           </div>
                         </div>
                         <hr />
