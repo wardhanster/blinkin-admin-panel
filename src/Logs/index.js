@@ -41,7 +41,7 @@ const logTypeOptions = [
 ];
 
 const Logs = (props) => {
-  const { getAPI, filteringAPI } = props;
+  const { getAPI, filteringAPI, getTimeZone } = props;
 
   const [logsData, setLogsData] = useState(null);
   const [shouldShowFilterOptions, setShowFilterOptions] = useState(false);
@@ -175,13 +175,7 @@ const Logs = (props) => {
             <div>{content.user_name}</div>
             <div className="small text-muted">
               {window.strings.Dashboard_registered || "Registered"}:{" "}
-              {created_at.toLocaleDateString("en-GB", {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
+              {getTimeZone(created_at, "DD MMM YYYY, h:mm A")}
             </div>
           </td>
           <td>{content.users_email}</td>
