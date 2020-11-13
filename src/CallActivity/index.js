@@ -126,7 +126,7 @@ const CallActivity = (props) => {
     let tableContent = null;
     if (callActivityData !== null) {
       tableContent = callActivityData.data.map((content, index) => {
-        const callStartTime = new Date(content.call_start_time);
+        // const callStartTime = new Date(content.call_start_time);
         return (
           <tr key={`callactivity_${index}`} className="text-left">
             <td>
@@ -165,7 +165,7 @@ const CallActivity = (props) => {
                 hour: "2-digit",
                 minute: "2-digit",
               })} */}
-              {getTimeZone(callStartTime, "DD MMM YYYY, h:mm A")}
+              {getTimeZone(content.call_start_time, "DD MMM YYYY, h:mm A")}
             </td>
             <td>
               {content.call_end_time
