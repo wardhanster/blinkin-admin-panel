@@ -15,7 +15,7 @@ import PagesButton from "../logsCallactivity_Utils/PagesButton";
 import "./call__activity.css";
 
 const CallActivity = (props) => {
-  const { getAPI, filteringAPI } = props;
+  const { getAPI, filteringAPI, getTimeZone } = props;
 
   const [shouldShowFilterOptions, setShowFilterOptions] = useState(false);
 
@@ -158,13 +158,14 @@ const CallActivity = (props) => {
             <td>{content.room_id}</td>
             <td>{content.to_phonenumber ? content.to_phonenumber : "NA"}</td>
             <td>
-              {callStartTime.toLocaleDateString("en-GB", {
+              {/* {callStartTime.toLocaleDateString("en-GB", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",
                 hour: "2-digit",
                 minute: "2-digit",
-              })}
+              })} */}
+              {getTimeZone(callStartTime, "DD MMM YYYY, h:mm A")}
             </td>
             <td>
               {content.call_end_time
