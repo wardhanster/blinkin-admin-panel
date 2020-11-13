@@ -20,6 +20,7 @@ export default function Users({
   fetchUserById,
   updateUserData,
   deleteUsers,
+  getZoneTime,
 }) {
   let [activeModal, setActiveModal] = useState(false);
   let [userData, setUserData] = useState(null);
@@ -173,6 +174,7 @@ export default function Users({
           showFilter={showFilter}
           handleFilterSubmit={handleFilterSubmit}
           handleClear={handleClear}
+          getZoneTime={getZoneTime}
         />
       )}
       {activeModal && (

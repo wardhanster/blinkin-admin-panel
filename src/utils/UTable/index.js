@@ -26,6 +26,7 @@ export default function UTable({
   handleFilterSubmit,
   showFilter,
   handleClear,
+  getZoneTime,
 }) {
   const [userData, setUserData] = useState(data ? data[0].data : []);
   const [isOpen, setIsOpen] = useState(false);
@@ -254,9 +255,7 @@ export default function UTable({
                           }
                         >
                           {user.last_active_at
-                            ? translateDateTime(
-                                dateToHowManyAgo(user.last_active_at)
-                              )
+                            ? getZoneTime(user.last_active_at, null, true)
                             : "NA"}
                         </strong>
                       </td>
