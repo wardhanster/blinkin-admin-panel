@@ -167,7 +167,7 @@ const Logs = (props) => {
   let tableContent = null;
   if (logsData !== null) {
     tableContent = logsData.data.map((content, index) => {
-      const created_at = new Date(content.created_at);
+      // const created_at = new Date(content.created_at);
 
       return (
         <tr key={`logs_${index}`} className="text-left">
@@ -175,7 +175,7 @@ const Logs = (props) => {
             <div>{content.user_name}</div>
             <div className="small text-muted">
               {window.strings.Dashboard_registered || "Registered"}:{" "}
-              {getTimeZone(created_at, "DD MMM YYYY, h:mm A")}
+              {getTimeZone(content.created_at, "DD MMM YYYY, h:mm A")}
             </div>
           </td>
           <td>{content.users_email}</td>
