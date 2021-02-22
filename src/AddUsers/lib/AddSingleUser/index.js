@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-
-import "./add__single_user.css";
-import validate from "../utils/validateRules";
-import useForm from "../utils/useForm";
-import AlertShow from "../utils/useAlert";
+import React, { useState } from 'react';
+import './add__single_user.css';
+import validate from '../utils/validateRules';
+import useForm from '../utils/useForm';
+import AlertShow from '../utils/useAlert';
 
 import {
   Form,
@@ -14,17 +13,15 @@ import {
   Row,
   Col,
   Spinner,
-} from "reactstrap";
-import Select from "react-select";
+} from 'reactstrap';
+import Select from 'react-select';
 
-import countryJson from "../../../utils/CountryOptions";
+import countryJson from '../../../utils/CountryOptions';
 
 export default function AddSingleUsers({ handleSingleUserAPI }) {
   const [passwordType, setPasswordType] = useState(true);
-  const [responseMsg, setResponseMsg] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const [responseMsg, setResponseMsg] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   const {
     values,
@@ -39,9 +36,9 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
   function handleSuccess() {
     setLoading(true);
     if (passwordType) {
-      values.pass_gen = "provide_password";
+      values.pass_gen = 'provide_password';
     } else {
-      values.pass_gen = "generate_password";
+      values.pass_gen = 'generate_password';
     }
     try {
       values.userCountry = values.userCountryCode.value;
@@ -54,15 +51,34 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
   }
 
   let handleResponseCallBack = (res) => {
-    if (res[0].success) {
-      setResponseMsg(res[0].message);
-      setShowAlert(true);
-      setSuccess(true);
+    if (!res.errors) {
+      setResponseMsg([
+        {
+          title: res[0].message,
+          success: true,
+        },
+      ]);
+
       handleReset();
     } else {
-      setResponseMsg(res[0].message);
-      setShowAlert(true);
-      setSuccess(false);
+      setLoading(false);
+
+      const { errors } = res;
+
+      let responseMessage = [];
+
+      Object.keys(errors).map((key) => {
+        const errorMessageTranslation =
+          window.strings[errors[key][0]] || errors[key][0];
+
+        responseMessage.push({
+          title: `${errorMessageTranslation}`,
+          success: false,
+        });
+      });
+
+      setResponseMsg(responseMessage);
+      return;
     }
 
     setLoading(false);
@@ -72,45 +88,58 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
     setPasswordType(!passwordType);
   };
 
-  const dismissAlert = () => {
-    setResponseMsg(null);
+  const dismissAlert = (key) => {
+    const messages = [...responseMsg];
+
+    if (key > -1) {
+      messages.splice(key, 1);
+    }
+
+    setResponseMsg(messages);
   };
 
   const handleInputClear = () => {
-    setResponseMsg(null);
-    setShowAlert(false);
+    setResponseMsg([]);
     handleClear();
+  };
+
+  const showAlerts = () => {
+    if (responseMsg.length === 0) {
+      return;
+    }
+
+    return responseMsg.map((message, key) => (
+      <AlertShow
+        key={key}
+        color={message.success ? 'primary' : 'danger'}
+        msg={message.title}
+        dismissCall={() => dismissAlert(key)}
+      />
+    ));
   };
 
   return (
     <div className="pt-3 pl-4 pr-4">
       <Form onSubmit={handleSubmit} noValidate>
-        {responseMsg && (
-          <AlertShow
-            color={success ? "primary" : "danger"}
-            msg={responseMsg}
-            visible={showAlert}
-            dismissCall={dismissAlert}
-          />
-        )}
+        {showAlerts()}
         {loading && (
           <div className="text-center">
-            <Spinner style={{ width: "3rem", height: "3rem" }} />
+            <Spinner style={{ width: '3rem', height: '3rem' }} />
           </div>
         )}
 
         <FormGroup>
           <Label htmlFor="nf-name">
-            {window.strings.Dashboard_name || "Name"}
+            {window.strings.Dashboard_name || 'Name'}
           </Label>
           <Input
             type="text"
             id="nf-name"
             name="name"
             placeholder="Enter Name"
-            value={values.name || ""}
+            value={values.name || ''}
             onChange={handleChange}
-            className={errors.name ? "is-invalid" : ""}
+            className={errors.name ? 'is-invalid' : ''}
           />
           {errors.name && (
             <small className="form-text text-danger">{errors.name}</small>
@@ -118,7 +147,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
         </FormGroup>
         <FormGroup>
           <Label htmlFor="nf-email">
-            {window.strings.Dashboard_email || "Email"}
+            {window.strings.Dashboard_email || 'Email'}
           </Label>
           <Input
             type="email"
@@ -126,9 +155,9 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
             name="email"
             placeholder="Enter Email"
             autoComplete="email"
-            value={values.email || ""}
+            value={values.email || ''}
             onChange={handleChange}
-            className={errors.email ? "is-invalid" : ""}
+            className={errors.email ? 'is-invalid' : ''}
           />
           {errors.email && (
             <small className="form-text text-danger">{errors.email}</small>
@@ -136,7 +165,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
         </FormGroup>
         <FormGroup>
           <Label htmlFor="nf-password">
-            {window.strings.Dashboard_password || "Password"}
+            {window.strings.Dashboard_password || 'Password'}
           </Label>
           <div className="pb-2">
             <FormGroup check inline>
@@ -150,7 +179,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
                 onChange={handleRadio}
               />
               <Label className="form-check-label" check htmlFor="inline-radio1">
-                {window.strings.Dashboard_enterPassword || " Enter Password"}
+                {window.strings.Dashboard_enterPassword || ' Enter Password'}
               </Label>
             </FormGroup>
             <FormGroup check inline>
@@ -174,8 +203,8 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
             name="password"
             placeholder="Enter Password"
             disabled={!passwordType}
-            value={values.password || ""}
-            className={errors.password ? "is-invalid" : ""}
+            value={values.password || ''}
+            className={errors.password ? 'is-invalid' : ''}
             onChange={handleChange}
           />
           {errors.password && (
@@ -184,7 +213,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
         </FormGroup>
         <FormGroup>
           <Label htmlFor="nf-position">
-            {window.strings.Dasboard_position || "Position"}
+            {window.strings.Dasboard_position || 'Position'}
           </Label>
           <Input
             type="text"
@@ -192,11 +221,11 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
             name="position"
             placeholder="Enter Position"
             onChange={handleChange}
-            value={values.position || ""}
+            value={values.position || ''}
           />
         </FormGroup>
         <FormGroup>
-          <Label>{window.strings.Dashboard_country || "Country"}</Label>
+          <Label>{window.strings.Dashboard_country || 'Country'}</Label>
           <Select
             name="userCountryCode"
             options={countryJson}
@@ -213,12 +242,12 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
           <Row>
             <Col>
               <Button color="primary" block>
-                {window.strings.Dashboard_submit || "Submit"}
+                {window.strings.Dashboard_submit || 'Submit'}
               </Button>
             </Col>
             <Col>
               <Button color="info" block onClick={handleInputClear}>
-                {window.strings.Dashboard_clear || "Clear"}
+                {window.strings.Dashboard_clear || 'Clear'}
               </Button>
             </Col>
           </Row>
