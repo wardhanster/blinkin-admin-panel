@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from 'react';
 
 import {
   Modal,
@@ -10,19 +10,21 @@ import {
   Label,
   Input,
   FormGroup,
-} from "reactstrap";
-import Loader from "../utils/Loader";
-import { showMonthDateYear } from "../utils/DateHandle";
+} from 'reactstrap';
+import Loader from '../utils/Loader';
+import { showMonthDateYear } from '../utils/DateHandle';
 
-import countryOptions from "../utils/CountryOptions";
-const DropDownSelect = React.lazy(() => import("../utils/DropDownSelect"));
+import countryOptions from '../utils/CountryOptions';
+const DropDownSelect = React.lazy(() => import('../utils/DropDownSelect'));
 
 const userInitialData = {
-  name: "",
-  email: "",
-  position: "",
-  country: "",
+  name: '',
+  email: '',
+  position: '',
+  country: '',
 };
+
+const MIN_PASSWORD_LENGTH = 7;
 
 export default function UserModal({
   active,
@@ -33,7 +35,7 @@ export default function UserModal({
 }) {
   const [modal, setModal] = useState(false);
   const [userData, setUserData] = useState(userInitialData);
-  const [password, setPassword] = useState(null);
+  const [password, setPassword] = useState('');
   const [userError, setUserError] = useState({});
 
   useEffect(() => {
@@ -59,21 +61,20 @@ export default function UserModal({
   const updateForm = () => {
     let errors = {};
     if (!userData.name) {
-      errors.user = "Required";
+      errors.user = 'Required';
     } else if (userData.name.length < 3) {
-      errors.user = "Minimum 3 Character";
+      errors.user = 'Minimum 3 Character';
     }
 
     if (!userData.country) {
-      errors.country = "Required";
+      errors.country = 'Required';
     } else if (userData.country.length < 2) {
-      errors.country = "Enter Proper ISO code";
+      errors.country = 'Enter Proper ISO code';
     }
 
     if (password) {
-      if (password.length === 0 || password.length >= 6) {
-      } else {
-        errors.password = "Password should be greater then 6 Character";
+      if (password.length !== 0 && password.length <= MIN_PASSWORD_LENGTH) {
+        errors.password = 'Password should be greater then 7 Character';
       }
     }
 
@@ -84,10 +85,9 @@ export default function UserModal({
         name: userData.name,
         userCountry: userData.country,
         position: userData.position,
+        password: password,
       };
-      if (password && password.length >= 6) {
-        newUpdatedUser.password = password;
-      }
+
       updateUserDetails(userData.id, newUpdatedUser);
     }
   };
@@ -104,8 +104,8 @@ export default function UserModal({
     <div>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>
-          {window.strings.Dashboard_user || "User"} -{" "}
-          {modalLoading ? "..." : userData ? userData.name : ""}
+          {window.strings.Dashboard_user || 'User'} -{' '}
+          {modalLoading ? '...' : userData ? userData.name : ''}
         </ModalHeader>
         {modalLoading ? (
           <div className="mb-5 mt-4">
@@ -119,13 +119,13 @@ export default function UserModal({
                   <Form>
                     <FormGroup>
                       <Label for="name">
-                        {window.strings.Dashboard_name || "Name"}
+                        {window.strings.Dashboard_name || 'Name'}
                       </Label>
                       <Input
                         type="text"
                         name="name"
                         placeholder="Name"
-                        defaultValue={userData.name || ""}
+                        defaultValue={userData.name || ''}
                         onChange={handleChangeInput}
                       />
                       {userError.user && (
@@ -134,7 +134,7 @@ export default function UserModal({
                     </FormGroup>
                     <FormGroup>
                       <Label for="name">
-                        {window.strings.Dashboard_email || "Email"}
+                        {window.strings.Dashboard_email || 'Email'}
                       </Label>
                       <Input
                         type="text"
@@ -146,18 +146,18 @@ export default function UserModal({
                     </FormGroup>
                     <FormGroup>
                       <Label for="password">
-                        {window.strings.Dashboard_password || "Password"}{" "}
+                        {window.strings.Dashboard_password || 'Password'}{' '}
                         <small>
-                          ({" "}
+                          ({' '}
                           {window.strings.Dashboard_leaveBlankPassword ||
-                            "Leave blank to keep existing password"}{" "}
+                            'Leave blank to keep existing password'}{' '}
                           )
                         </small>
                       </Label>
                       <Input
                         type="password"
                         name="password"
-                        value={password || ""}
+                        value={password || ''}
                         onChange={(e) => setPassword(e.target.value)}
                       />
                       {userError.password && (
@@ -168,7 +168,7 @@ export default function UserModal({
                     </FormGroup>
                     <FormGroup>
                       <Label for="name">
-                        {window.strings.Dashboard_country || "Country"}
+                        {window.strings.Dashboard_country || 'Country'}
                       </Label>
                       <Suspense fallback={<div>loading ...</div>}>
                         <DropDownSelect
@@ -188,12 +188,12 @@ export default function UserModal({
                     </FormGroup>
                     <FormGroup>
                       <Label for="name">
-                        {window.strings.Dashboard_position || "Position"}
+                        {window.strings.Dashboard_position || 'Position'}
                       </Label>
                       <Input
                         type="text"
                         name="position"
-                        value={userData.position}
+                        value={userData.position || ''}
                         placeholder="Position"
                         onChange={handleChangeInput}
                       />
@@ -201,7 +201,7 @@ export default function UserModal({
                   </Form>
                   <p>
                     <small>
-                      {window.strings.Dashboard_lastUpdate || "Last Update"} -{" "}
+                      {window.strings.Dashboard_lastUpdate || 'Last Update'} -{' '}
                       {showMonthDateYear(new Date(userDetails.updated_at))}
                     </small>
                   </p>
@@ -209,15 +209,15 @@ export default function UserModal({
 
                 <ModalFooter>
                   <Button color="primary" onClick={updateForm}>
-                    {window.strings.Dashboard_update || "Update"}
+                    {window.strings.Dashboard_update || 'Update'}
                   </Button>
                   <Button color="secondary" onClick={toggle}>
-                    {window.strings.Dashboard_cancel || "Cancel"}
+                    {window.strings.Dashboard_cancel || 'Cancel'}
                   </Button>
                 </ModalFooter>
               </>
             ) : (
-              window.strings.Dashboard_userNotFound || "User Not Found"
+              window.strings.Dashboard_userNotFound || 'User Not Found'
             )}
           </>
         )}
