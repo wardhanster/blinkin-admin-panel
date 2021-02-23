@@ -84,7 +84,7 @@ export default function UserModal({
       let newUpdatedUser = {
         name: userData.name,
         userCountry: userData.country,
-        position: userData.position,
+        position: userData.position || '',
         password: password,
       };
 
