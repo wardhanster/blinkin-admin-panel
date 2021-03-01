@@ -32,19 +32,21 @@ export default function UserModal({
   userDetails,
   modalLoading,
   updateUserDetails,
+  updateErrors,
 }) {
   const [modal, setModal] = useState(false);
   const [userData, setUserData] = useState(userInitialData);
   const [password, setPassword] = useState('');
   const [userError, setUserError] = useState({});
+  const [respError, setRespError] = useState({});
 
   useEffect(() => {
     setUserData(userDetails);
+    setRespError(updateErrors);
     console.log(userDetails);
-  }, [userDetails]);
+  }, [userDetails, updateErrors]);
 
   const toggle = () => {
-    // debugger;
     setUserData(userInitialData);
     toggleModal(!modal);
     setModal((modal) => !modal);
@@ -100,6 +102,15 @@ export default function UserModal({
     return countryOptions.find((element) => element.value === defaultVal);
   };
 
+  // write clean or conditions
+  const getValidationError = (key1, key2) => {
+    if (key1 || key2) {
+      return key1 || key2;
+    }
+
+    return false;
+  };
+
   return (
     <div>
       <Modal isOpen={modal} toggle={toggle}>
@@ -128,8 +139,10 @@ export default function UserModal({
                         defaultValue={userData.name || ''}
                         onChange={handleChangeInput}
                       />
-                      {userError.user && (
-                        <small className="text-danger">{userError.user}</small>
+                      {getValidationError(userError.user, respError.name) && (
+                        <small className="text-danger">
+                          {getValidationError(userError.user, respError.name)}
+                        </small>
                       )}
                     </FormGroup>
                     <FormGroup>

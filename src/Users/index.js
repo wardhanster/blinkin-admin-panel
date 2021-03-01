@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 
-import UTable from "../utils/UTable";
-import Loader from "../utils/Loader";
-import UserModal from "./UserModal";
-import snackBar from "../utils/Snackbar";
+import UTable from '../utils/UTable';
+import Loader from '../utils/Loader';
+import UserModal from './UserModal';
+import snackBar from '../utils/Snackbar';
 
 const initial = {
   loading: false,
@@ -30,6 +30,7 @@ export default function Users({
   let [msg, setMsg] = useState(null);
   let [showFilter, setShowFilter] = useState(false);
   let [clearAll, setClearAll] = useState(false);
+  let [updateErrors, setUpdateErrors] = useState({});
   let initialLoadRef = useRef(true);
 
   let [main, setMain] = useState(initial);
@@ -109,28 +110,41 @@ export default function Users({
   const updateUserDetails = async (id, data) => {
     setModalLoading(true);
     let res = await updateUserData(id, data);
-    if (res) {
+    if (res.success) {
       setModalLoading(false);
       setActiveModal(false);
       setRefresh((refresh) => !refresh);
-      setMsg(window.strings.Dashboard_updatedSuccess || "Updated Successfully");
+      setMsg(window.strings.Dashboard_updatedSuccess || 'Updated Successfully');
       setSnackbarShow(true);
+      setUpdateErrors({});
       setTimeout(() => {
         setMsg(null);
         setSnackbarShow(false);
       }, 1000);
+    } else {
+      setModalLoading(false);
+
+      // make sure error format is in proper format
+      let updatedApiError = {};
+      Object.keys(res.errors).forEach((error) => {
+        updatedApiError[error] = res.errors[error][0];
+      });
+
+      setUserData({ ...userData, ...data });
+      setUpdateErrors(updatedApiError);
     }
   };
 
   const toggleModal = (val) => {
     setActiveModal(val);
+    setUpdateErrors({});
   };
 
   const handleDelete = async (ids, callback) => {
     let deleteRes = await deleteUsers(ids);
     if (deleteRes.success) {
       setRefresh((refresh) => !refresh);
-      setMsg(window.strings.Dashboard_deletedSuccess || "Deleted Successfully");
+      setMsg(window.strings.Dashboard_deletedSuccess || 'Deleted Successfully');
       setSnackbarShow(true);
       setTimeout(() => {
         setMsg(null);
@@ -138,7 +152,7 @@ export default function Users({
       }, 1000);
       callback();
     } else {
-      setMsg("Failed");
+      setMsg('Failed');
       setSnackbarShow(true);
       setTimeout(() => {
         setMsg(null);
@@ -184,6 +198,7 @@ export default function Users({
           toggleModal={toggleModal}
           modalLoading={modalLoading}
           updateUserDetails={updateUserDetails}
+          updateErrors={updateErrors}
         />
       )}
       {snackbarShow && <div>{snackBar(snackbarShow, msg)}</div>}
