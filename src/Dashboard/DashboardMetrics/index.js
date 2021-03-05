@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import "./dashboard-metrics.css";
-import countryOptions from "../../utils/CountryOptions";
-import DropDownSelect from "../../utils/DropDownSelect";
-import DateRange from "./DateRange";
+import React, { useState, useEffect } from 'react';
+import './dashboard-metrics.css';
+import countryOptions from '../../utils/CountryOptions';
+import DropDownSelect from '../../utils/DropDownSelect';
+import DateRange from './DateRange';
 
 export default function DashboardMetrics({ responseData, updateFilter }) {
   const [query, setQuery] = useState();
@@ -11,19 +11,19 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
 
   function dateFormat(date) {
     var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
       year = d.getFullYear();
 
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
 
-    return [year, month, day].join("-");
+    return [year, month, day].join('-');
   }
 
   const handleCountry = (data, type) => {
     var countryType = {
-      [type]: data["value"],
+      [type]: data['value'],
     };
     setQuery({ ...query, ...countryType });
   };
@@ -117,7 +117,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                               </div>
                               <div className="col-6 text-center">
                                 <p className="percentage-q1">
-                                  {responseData.psr_data["approval"]}%
+                                  {responseData.psr_data['approval']}%
                                 </p>
                               </div>
                             </div>
@@ -132,7 +132,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                                 <p className="total-txt">Total Response</p>
                               </div>
                               <div className="col-12 total-count">
-                                {responseData.psr_data["total"]}
+                                {responseData.psr_data['total']}
                               </div>
                             </div>
                           </div>
@@ -149,7 +149,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                                 </p>
                               </div>
                               <div className="col-12 total-count">
-                                {responseData.psr_data["yes"]}
+                                {responseData.psr_data['yes']}
                               </div>
                             </div>
                           </div>
@@ -166,8 +166,8 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                                 </p>
                               </div>
                               <div className="col-12 total-count">
-                                {" "}
-                                {responseData.psr_data["no"]}
+                                {' '}
+                                {responseData.psr_data['no']}
                               </div>
                             </div>
                           </div>
@@ -215,7 +215,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                               </div>
                               <div className="col-6 text-center">
                                 <p className="percentage-q1">
-                                  {responseData.scr_data["approval"]}%
+                                  {responseData.scr_data['approval']}%
                                 </p>
                               </div>
                             </div>
@@ -230,7 +230,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                                 <p className="total-txt">Total Response</p>
                               </div>
                               <div className="col-12 total-count">
-                                {responseData.scr_data["total"]}
+                                {responseData.scr_data['total']}
                               </div>
                             </div>
                           </div>
@@ -247,7 +247,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                                 </p>
                               </div>
                               <div className="col-12 total-count">
-                                {responseData.scr_data["yes"]}
+                                {responseData.scr_data['yes']}
                               </div>
                             </div>
                           </div>
@@ -264,7 +264,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                                 </p>
                               </div>
                               <div className="col-12 total-count">
-                                {responseData.scr_data["no"]}
+                                {responseData.scr_data['no']}
                               </div>
                             </div>
                           </div>
@@ -282,7 +282,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                     How do you rate the benefits of the Wilo-Live Assistant ?
                   </p>
                   <p>
-                    Answered by: <b>Agent</b>
+                    Answered by: <b>Client</b>
                   </p>
                   <hr />
                   <div className="row mb-1">
@@ -311,7 +311,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                               </div>
                               <div className="col-6 text-center">
                                 <p className="percentage-q1">
-                                  {responseData.cr_data["approval_rating"]}%
+                                  {responseData.cr_data['approval_rating']}%
                                 </p>
                               </div>
                             </div>
@@ -326,7 +326,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                                 <p className="total-txt">Approval Score</p>
                               </div>
                               <div className="col-12 total-count">
-                                {responseData.cr_data["approval_score"]}
+                                {responseData.cr_data['approval_score']}
                               </div>
                             </div>
                           </div>
@@ -342,7 +342,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                                 </p>
                               </div>
                               <div className="col-12 total-count">
-                                {responseData.cr_data["total"]}
+                                {responseData.cr_data['total']}
                               </div>
                             </div>
                           </div>
@@ -359,24 +359,24 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                               </div>
                               <div className="col-12 total-count">
                                 <h6>
-                                  Rating 5/5 :{" "}
-                                  {responseData.cr_data["rating_5"]}
+                                  Rating 5/5 :{' '}
+                                  {responseData.cr_data['rating_5']}
                                 </h6>
                                 <h6>
-                                  Rating 4/5 :{" "}
-                                  {responseData.cr_data["rating_4"]}
+                                  Rating 4/5 :{' '}
+                                  {responseData.cr_data['rating_4']}
                                 </h6>
                                 <h6>
-                                  Rating 3/5 :{" "}
-                                  {responseData.cr_data["rating_3"]}
+                                  Rating 3/5 :{' '}
+                                  {responseData.cr_data['rating_3']}
                                 </h6>
                                 <h6>
-                                  Rating 2/5 :{" "}
-                                  {responseData.cr_data["rating_2"]}
+                                  Rating 2/5 :{' '}
+                                  {responseData.cr_data['rating_2']}
                                 </h6>
                                 <h6>
-                                  Rating 1/5 :{" "}
-                                  {responseData.cr_data["rating_1"]}
+                                  Rating 1/5 :{' '}
+                                  {responseData.cr_data['rating_1']}
                                 </h6>
                               </div>
                             </div>
@@ -418,7 +418,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                         </div>
                         <hr />
                         <h4 id="costSavings">
-                          Calculated Cost Savings:{" "}
+                          Calculated Cost Savings:{' '}
                           <strong>€ {costSavings}</strong>
                         </h4>
                       </div>
@@ -444,7 +444,7 @@ export default function DashboardMetrics({ responseData, updateFilter }) {
                         </div>
                         <hr />
                         <p className="mb-0" id="carbonEmission">
-                          Carbon Emissions Saved:{" "}
+                          Carbon Emissions Saved:{' '}
                           <strong>{carbonEmission} KG</strong>
                         </p>
                         <small>basis: vehicle emitting 200g/km</small>
