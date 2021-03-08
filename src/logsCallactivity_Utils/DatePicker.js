@@ -22,6 +22,8 @@ function DatePicker(props) {
       <DateRangePicker
         small
         block
+        startDatePlaceholderText={window.strings.Dashboard_startDate || 'Start Date'}
+        endDatePlaceholderText={window.strings.Dashboard_endDate || 'End Date'}
         startDate={startDate}
         startDateId="tata-start-date"
         endDate={endDate}

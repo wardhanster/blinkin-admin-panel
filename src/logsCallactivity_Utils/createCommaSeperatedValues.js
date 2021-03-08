@@ -28,7 +28,7 @@ function convertToHMS(seconds) {
   let s = Math.floor((seconds % 3600) % 60);
   h = h > 0 ? h + (h === 1 ? "hr " : "hrs ") : "";
   m = m > 0 ? m + (m === 1 ? "min " : "mins ") : "";
-  s = s > 0 ? s + "sec" : "";
+  s = s > 0 ? s + window.strings.Dashboard_sec || 'sec' : "";
   return h + m + s;
 }
 

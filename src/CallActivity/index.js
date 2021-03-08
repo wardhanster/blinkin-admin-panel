@@ -227,7 +227,7 @@ const CallActivity = (props) => {
               {window.strings.Dashboard_country || "Country"}
             </h6>
             <Select
-              placeholder="Country"
+              placeholder={window.strings.Dashboard_country || 'Country'}
               className="d-block text-left"
               value={country}
               isMulti
@@ -280,8 +280,12 @@ const CallActivity = (props) => {
             className="mr-2"
             onClick={toggleFilterOptions}
           >
-            {shouldShowFilterOptions ? "Hide" : "Show"}{" "}
-            {window.strings.Dashboard_filterOptions || "Filter Options"}
+            {
+            shouldShowFilterOptions ?
+              window.strings.Dashboard_hideFilter || 'Hide filter options' :
+              window.strings.Dashboard_showFilter || 'Show filter options'
+            }
+            
           </Button>
           <Input
             type="select"
