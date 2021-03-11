@@ -90,6 +90,7 @@ function Filter({ handleFilterSubmit, handleClear }) {
                   </label>
                   <DropDownSelect
                     clear={clear}
+                    placeholder={`${window.strings.Dashboard_select || 'Select'}...`}
                     onSelect={handleCountry}
                     option={countryOptions}
                   />

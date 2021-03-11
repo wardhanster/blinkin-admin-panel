@@ -8,6 +8,7 @@ export default function DropDownSelect(props) {
     option,
     onSelect,
     clear,
+    placeholder = 'Select...',
     defaultSelect = null,
     multi = true,
     blur = false,
@@ -31,6 +32,7 @@ export default function DropDownSelect(props) {
     <Select
       isMulti={multi}
       closeMenuOnSelect={false}
+      placeholder={placeholder}
       value={defaultSelect || selectedOption}
       onChange={handleChange}
       options={option}
