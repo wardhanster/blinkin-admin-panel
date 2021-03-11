@@ -329,11 +329,11 @@ const Logs = (props) => {
             className="w-25 mr-3"
             defaultValue="25"
           >
-            <option value="10">{window.strings.Dashboard_show || 'Show'} 10</option>
-            <option value="25">{window.strings.Dashboard_show || 'Show'} 25</option>
-            <option value="50">{window.strings.Dashboard_show || 'Show'} 50</option>
-            <option value="100">{window.strings.Dashboard_show || 'Show'} 100</option>
-            <option value="200">{window.strings.Dashboard_show || 'Show'} 200</option>
+            <option value="10">{window.strings.Dashboard_showEntries || 'Show'} 10</option>
+            <option value="25">{window.strings.Dashboard_showEntries || 'Show'} 25</option>
+            <option value="50">{window.strings.Dashboard_showEntries || 'Show'} 50</option>
+            <option value="100">{window.strings.Dashboard_showEntries || 'Show'} 100</option>
+            <option value="200">{window.strings.Dashboard_showEntries || 'Show'} 200</option>
           </Input>
         </div>
 
