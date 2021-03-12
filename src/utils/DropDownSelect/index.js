@@ -8,7 +8,7 @@ export default function DropDownSelect(props) {
     option,
     onSelect,
     clear,
-    placeholder = 'Select...',
+    placeholder = `${window.strings.selectText || 'Select'}...`,
     defaultSelect = null,
     multi = true,
     blur = false,
