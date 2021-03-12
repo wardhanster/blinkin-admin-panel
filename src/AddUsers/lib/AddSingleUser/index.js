@@ -228,6 +228,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
           <Label>{window.strings.Dashboard_country || 'Country'}</Label>
           <Select
             name="userCountryCode"
+            placeholder={`${window.strings.selectText}...`}
             options={countryJson}
             onChange={handleCountryChange}
             isClearable={true}
