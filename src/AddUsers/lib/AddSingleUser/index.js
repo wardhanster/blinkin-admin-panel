@@ -54,7 +54,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
     if (!res?.errors && res.success) {
       setResponseMsg([
         {
-          title: window.string.Dashboard_userCreated || 'User created successfully',
+          title: window.strings.Dashboard_userCreated || 'User created successfully',
           success: true,
         },
       ]);
