@@ -29,7 +29,7 @@ export default function RecentCard(props) {
   return (
     <div className="mb-4 mt-2 recent-card">
       <h5 className="text-muted mb-3">
-        {window.strings.ML_quickAccess || "Quick access"}
+        {window.strings.ML_UploadAssets || "Upload Assets"}
       </h5>
       <Container>
         <Row>

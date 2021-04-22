@@ -5,7 +5,7 @@ import "./fileupload.css";
 import FileUploadList from "./FileUploadList";
 
 import FilePreviewModal from "./FilePreviewModal";
-const acceptFileType = ["image/png", "image/jpeg", "image/jpg"];
+const acceptFileType = ["image/png", "image/jpeg", "image/jpg", "video/mp4", "application/pdf"];
 export default function FileUpload(props) {
   const {
     uploadFiles,
@@ -38,6 +38,7 @@ export default function FileUpload(props) {
   const handleOnChange = (e, append = false) => {
     e.preventDefault();
     let orginalFiles = Array.from(e.target.files);
+    console.log(orginalFiles,'orginalFiles')
     let filesList = orginalFiles.filter(
       (file) => acceptFileType.indexOf(file.type) > -1
     );
@@ -145,6 +146,7 @@ export default function FileUpload(props) {
   let handleFileTagsDesc = (index, data) => {
     files[index].tags = data.tags;
     files[index].description = data.description;
+    files[index].is_global = data.makePublic;
     setFiles(files);
   };
 
@@ -157,7 +159,7 @@ export default function FileUpload(props) {
           toggle={onToggle}
           render={() => (
             <FileUploadList
-              files={files}
+              files={files} 
               tags={tags}
               deleteFile={deleteFile}
               updateFile={handleOnChange}
@@ -181,7 +183,7 @@ export default function FileUpload(props) {
           <input
             ref={fileInput}
             type="file"
-            accept="image/jpeg, image/png,image/jpg"
+            accept={acceptFileType.join(',')}
             hidden
             onChange={(e) => handleOnChange(e)}
             multiple

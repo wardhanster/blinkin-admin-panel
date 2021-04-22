@@ -10,8 +10,6 @@ import {
   getFormattedTime,
 } from '../../lib/hooks/createFileAndDownload';
 
-window.strings = {};
-
 const usersWithNoCallsHeader = [
   window?.strings?.Dashboard_name || "Name",
   window?.strings?.Dashboard_email || "Email",

@@ -38,7 +38,7 @@ let video = [
   "video",
 ];
 export default function MediaFileList(props) {
-  const { uploadFiles, fetchAPI, deleteApi, sideModal, toggle, tags } = props;
+  const { uploadFiles, fetchAPI, deleteApi, sideModal, toggle, tags, fetchPaginationAPI } = props;
   let [search, setSearch] = useState(null);
   let [data, setData] = useState(null);
   let [activeModal, setActiveModal] = useState(null);
@@ -96,25 +96,8 @@ export default function MediaFileList(props) {
     }
   };
 
-  let fetchApi = async (pagenum, search) => {
-    let response = await fetchAPI(pagenum, search);
-    let result = response.data;
-    let baseUrl = response.baseUrl;
-    if (!recentData && result) {
-      if (result.length > 3) {
-        setRecentData(result.slice(0, 3));
-        setNewBaseUrl(baseUrl);
-      }
-    }
-
-    return {
-      result,
-      baseUrl,
-    };
-  };
-
   return (
-    <Container>
+    <Container className="p-3 mt-3 bg-white border">
       <MediaHeader
         defaultTags={tags}
         searchCallback={searchTerms}
@@ -137,7 +120,8 @@ export default function MediaFileList(props) {
         baseUrl={baseUrl}
         searchClear={searchClear}
         search={search}
-        fetchAPI={fetchApi}
+        fetchAPI={fetchAPI}
+        fetchPaginationAPI={fetchPaginationAPI}
         deleteApi={deleteApi}
         handleClick={handleClick}
         bytesToSize={bytesToSize}

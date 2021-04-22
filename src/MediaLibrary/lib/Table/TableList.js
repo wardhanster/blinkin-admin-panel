@@ -33,15 +33,15 @@ export default function TableList(props) {
           <i
             title="Copy Url"
             onClick={() => copyClipBoard(file.file_url)}
-            className="fa fa-clone copy-icon"
+            className="fa fa-clone copy-icon mr-2"
             aria-hidden="true"
           ></i>
-          <button
+          <i
+            title="Delete"
             onClick={() => deleteApi(file)}
-            className="btn btn-link text-danger"
-          >
-            Delete
-          </button>
+            className="fa fa-trash text-danger"
+            aria-hidden="true"
+          ></i>
         </td>
       </tr>
     );
