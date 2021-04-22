@@ -112,101 +112,89 @@ export default function MediaHeader(props) {
   };
 
   return (
-    <Container className="media_header">
-      <Card className="mb-2">
-      <CardBody>
-      <Row className="media_header_title mb-2 pt-3 justify-content-between">
-      <Form className="search-form">
-        <div className="container-fluid search_container">
-          <Row>
-              <Col md={12}>
-                <h3>window.strings.Dashboard_filter || Filter</h3>
-              </Col>
+    <div className="container ml-0 border p-3 mt-3 mw-100 rounded">
+       <Row>
+       <div className="ml-3 small col-lg-3 mb-2">
+                <h3>{ window.strings.Dashboard_filter || "Filters" }</h3>
+           </div>
           </Row>
-          <Row form>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="exampleEmail">{window.strings.ML_FileName || "File Name" } </Label>
-                <Input
-                        placeholder={window.strings.ML_FileName || "File Name"}
-                        value={filterParams["upload_name"] || ""}
-                        onChange={(e) => handleFilterChange('upload_name', e.target.value)}
-                      />
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-              <FormGroup> 
-                <Label for="examplePassword">{ window.strings.ML_uploadedBy || "Extention" }</Label>
-                <Input
-                        placeholder={window.strings.ML_extention || "Extention"}
-                        value={filterParams["file_extension"] || ""}
-                        onChange={(e) => handleFilterChange('file_extension', e.target.value)}
-                      />
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="examplePassword"> { window.strings.ML_uploadedBy || "Uploaded By" }</Label>
-                <Input
+      <Row className="">
+          <div className="ml-3 small col-lg-3 mb-2">
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.ML_FileName || "File Name"}
+            </h6>
+            <Input
+                placeholder={window.strings.ML_FileName || "File Name"}
+                value={filterParams["upload_name"] || ""}
+                onChange={(e) => handleFilterChange('upload_name', e.target.value)}
+            />
+          </div>
+          <div className="ml-3 small col-lg-3 mb-2">
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.ML_extention || "Extention"}
+            </h6>
+            <Input
+                placeholder={window.strings.ML_extention || "Extention"}
+                value={filterParams["file_extension"] || ""}
+                onChange={(e) => handleFilterChange('file_extension', e.target.value)}
+              />
+          </div>
+          <div className="ml-3 small col-lg-3 mb-2">
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.ML_uploadedBy || "Uploaded By"}
+            </h6>
+            <Input
                         placeholder={window.strings.ML_uploadedBy || "Uploaded By"}
                         value={filterParams["uploader_name"] || ""}
                         onChange={(e) => handleFilterChange('uploader_name', e.target.value)}
-                      />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md={4}> 
-              <FormGroup>
-                <Label for="exampleEmail">{window.strings.ML_uplodersEmail || "Uploader's email" }</Label>
-                <Input
+            />
+          </div>
+          <div className="ml-3 small col-lg-3 mb-2">
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.ML_uplodersEmail || "Uploader's email"}
+            </h6>
+            <Input
                         placeholder={window.strings.ML_uplodersEmail || "Uploader's email"}
                         value={filterParams["uploader_email"] || ""}
                         onChange={(e) => handleFilterChange('uploader_email', e.target.value)}
-                      />
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="examplePassword">{window.strings.ML_uplodedOn || "Uploaded On"}</Label>
-                <DateRange clear={clear} handleDate={handleDate} />
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-                <FormGroup>
-                  <Label style={{paddingTop: 0}} sm={12}>{window.strings.ML_tags || "Tags"}</Label>
-                  <Col sm={12}>
-                    <Multiselect
+            />
+          </div>
+          <div className="ml-3 small col-lg-3 mb-2">
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.ML_uplodedOn || "Uploaded On"}
+            </h6>
+            <DateRange clear={clear} handleDate={handleDate} />
+          </div>
+          <div className="ml-3 small col-lg-3 mb-2">
+            <h6 className="d-flex font-weight-bold text-muted">
+              {window.strings.ML_tags || "Tags"}
+            </h6>
+            <Multiselect
                       data={defaultTags}
                       onChange={(value) => handleNewTag(value)}
                       value={tagVal}
-                    />
-                  </Col>
-                </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-          <Col md={12}>
+            />
+          </div>
+      </Row>
+      <div className="row ml-2">
             <InputGroup className="">
-              <Button color="primary" onClick={handleSearchSubmit}>
+              <Button
+                color="primary" 
+                className="d-flex ml-2"
+                size="sm" 
+                onClick={handleSearchSubmit}>
                 {window.strings.ML_search || "Search"}
               </Button>
               <Button
-                className="clearBtn"
+                className="d-flex ml-3 clearBtn"
+                size="sm"
                 color="primary"
                 onClick={handleClearSearch}
               >
                 {window.strings.ML_clear || "Clear"}
               </Button>
             </InputGroup>
-            </Col>
-           </Row>
-       </div>
-      </Form>
-
-      </Row>
-      </CardBody>
-      </Card>
-    </Container>
+           </div>
+    </div>
   );
 }
