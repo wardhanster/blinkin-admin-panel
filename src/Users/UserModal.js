@@ -173,9 +173,9 @@ export default function UserModal({
                         value={password || ''}
                         onChange={(e) => setPassword(e.target.value)}
                       />
-                      {userError.password && (
+                      {getValidationError(userError.password, respError.password) && (
                         <small className="text-danger">
-                          {userError.password}
+                          {getValidationError(userError.password, respError.password)}
                         </small>
                       )}
                     </FormGroup>

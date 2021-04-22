@@ -51,31 +51,39 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
   }
 
   let handleResponseCallBack = (res) => {
-    if (!res.errors) {
+    if (!res?.errors && res.success) {
       setResponseMsg([
         {
-          title: window.string.Dashboard_userCreated || 'User created successfully',
+          title: window.strings.Dashboard_userCreated || 'User created successfully',
           success: true,
         },
       ]);
-
+      setLoading(false)
       handleReset();
     } else {
       setLoading(false);
 
-      const { errors } = res;
+      const { errors, message } = res;
 
       let responseMessage = [];
 
-      Object.keys(errors).map((key) => {
-        const errorMessageTranslation =
-          window.strings[errors[key][0]] || errors[key][0];
+      if(errors) {
 
+        Object.keys(errors).map((key) => {
+          const errorMessageTranslation =
+            window.strings[errors[key][0]] || errors[key][0];
+  
+          responseMessage.push({
+            title: `${errorMessageTranslation}`,
+            success: false,
+          });
+        });   
+      } else {
         responseMessage.push({
-          title: `${errorMessageTranslation}`,
+          title: `${message}`,
           success: false,
         });
-      });
+      }   
 
       setResponseMsg(responseMessage);
       return;
@@ -228,6 +236,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
           <Label>{window.strings.Dashboard_country || 'Country'}</Label>
           <Select
             name="userCountryCode"
+            placeholder={`${window.strings.selectText}...`}
             options={countryJson}
             onChange={handleCountryChange}
             isClearable={true}

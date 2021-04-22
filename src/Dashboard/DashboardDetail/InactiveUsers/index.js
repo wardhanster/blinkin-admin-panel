@@ -12,10 +12,10 @@ import {
 } from "../../lib/hooks/createFileAndDownload";
 
 const inactiveUsersHeader = [
-  window.strings.Dashboard_name || "Name",
-  window.strings.Dashboard_email || "Email",
-  window.strings.Dashboard_country || "Country",
-  window.strings.Dashboard_createdAt || "Created At",
+  window?.strings?.Dashboard_name || "Name",
+  window?.strings?.Dashboard_email || "Email",
+  window?.strings?.Dashboard_country || "Country",
+  window?.strings?.Dashboard_createdAt || "Created At",
 ];
 
 export default function InactiveUsers({ fetchUserData }) {

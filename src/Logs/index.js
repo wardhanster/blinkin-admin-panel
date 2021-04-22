@@ -15,28 +15,28 @@ import "./log.css";
 const logTypeOptions = [
   {
     value: "Link sent by SMS",
-    label: window.strings.Dashboard_linkSentMsg || "Link Sent By SMS",
+    label: window?.strings?.Dashboard_linkSentMsg || "Link Sent By SMS",
   },
   {
     value: "Successful login",
-    label: window.strings.Dashboard_successfulLogin || "Successful Login",
+    label: window?.strings?.Dashboard_successfulLogin || "Successful Login",
   },
   {
     value: "Failed Login",
-    label: window.strings.Dashboard_failedLogin || "Failed Login",
+    label: window?.strings?.Dashboard_failedLogin || "Failed Login",
   },
   {
     value: "Link sent by email",
-    label: window.strings.Dashboard_linkSentEmail || "Link Sent By Email",
+    label: window?.strings?.Dashboard_linkSentEmail || "Link Sent By Email",
   },
   {
     value: "Beam link sent by SMS",
-    label: window.strings.Dashboard_beamLinkSentMsg || "Beam Link Sent By SMS",
+    label: window?.strings?.Dashboard_beamLinkSentMsg || "Beam Link Sent By SMS",
   },
   {
     value: "Beam link sent by email",
     label:
-      window.strings.Dashboard_beamLinkSentEmail || "Beam Link Sent By Email",
+      window?.strings?.Dashboard_beamLinkSentEmail || "Beam Link Sent By Email",
   },
 ];
 

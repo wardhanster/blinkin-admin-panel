@@ -9,11 +9,11 @@ import {
 } from "../../lib/hooks/createFileAndDownload";
 
 const mostActiveUsersHeader = [
-  window.strings.Dashboard_name || "Name",
-  window.strings.Dashboard_email || "Email",
-  window.strings.Dashboard_country || "Country",
-  window.strings.Dashboard_lastLoginAt || "Last Login At",
-  window.strings.Dashboard_callsCount || "Calls Count",
+  window?.strings?.Dashboard_name || "Name",
+  window?.strings?.Dashboard_email || "Email",
+  window?.strings?.Dashboard_country || "Country",
+  window?.strings?.Dashboard_lastLoginAt || "Last Login At",
+  window?.strings?.Dashboard_callsCount || "Calls Count",
 ];
 
 export default function MostActiveUsers({ fetchUserData }) {

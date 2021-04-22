@@ -11,10 +11,10 @@ import {
 } from "../../lib/hooks/createFileAndDownload";
 
 const usersWithNoCallsHeader = [
-  window.strings.Dashboard_name || "Name",
-  window.strings.Dashboard_email || "Email",
-  window.strings.Dashboard_country || "Country",
-  window.strings.Dashboard_lastLoginAt || "Last Login At",
+  window?.strings?.Dashboard_name || "Name",
+  window?.strings?.Dashboard_email || "Email",
+  window?.strings?.Dashboard_country || "Country",
+  window?.strings?.Dashboard_lastLoginAt || "Last Login At",
 ];
 
 export default function UsersWithNoCalls({ fetchUserData }) {
