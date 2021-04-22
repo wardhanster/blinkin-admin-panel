@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import AdminTable from "../../lib/AdminTable";
-import ButtonGroupDays from "../../lib/ButtonGroupDays";
-import useUsersData from "../../lib/hooks/useUsersData";
-import Paginator from "../../../utils/Paginator";
+import AdminTable from '../../lib/AdminTable';
+import ButtonGroupDays from '../../lib/ButtonGroupDays';
+import useUsersData from '../../lib/hooks/useUsersData';
+import Paginator from '../../../utils/Paginator';
 
 import {
   exportCSVFile,
   getFormattedTime,
-} from "../../lib/hooks/createFileAndDownload";
+} from '../../lib/hooks/createFileAndDownload';
+
+window.strings = {};
 
 const usersWithNoCallsHeader = [
   window?.strings?.Dashboard_name || "Name",
@@ -25,7 +27,7 @@ export default function UsersWithNoCalls({ fetchUserData }) {
 
   const { loading, response, error, downloadResponse } = useUsersData(
     fetchUserData,
-    "userswithnocalls",
+    'userswithnocalls',
     activeDays,
     pageno,
     false
@@ -65,10 +67,10 @@ export default function UsersWithNoCalls({ fetchUserData }) {
 
     if (downloadResponseData.records.data.length > 0) {
       var headers = {
-        name: "Name",
-        email: "Email",
-        country: "Country",
-        created_at: "Created At",
+        name: 'Name',
+        email: 'Email',
+        country: 'Country',
+        created_at: 'Created At',
       };
 
       var itemsFormatted = [];
@@ -92,7 +94,7 @@ export default function UsersWithNoCalls({ fetchUserData }) {
         <div className="row mb-3">
           <div className="col-3">
             <h6>
-              <b>{window.strings.Dashboard_nocalls || "No Calls"}</b>
+              <b>{window.strings.Dashboard_nocalls || 'No Calls'}</b>
             </h6>
           </div>
           <div className="col">

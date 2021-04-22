@@ -116,19 +116,19 @@ export default function MediaHeader(props) {
       <Card className="mb-2">
       <CardBody>
       <Row className="media_header_title mb-2 pt-3 justify-content-between">
-      <Form>
+      <Form className="search-form">
         <div className="container-fluid search_container">
           <Row>
               <Col md={12}>
-                <h3>Filter</h3>
+                <h3>window.strings.Dashboard_filter || Filter</h3>
               </Col>
           </Row>
           <Row form>
             <Col md={4}>
               <FormGroup>
-                <Label for="exampleEmail">File Name</Label>
+                <Label for="exampleEmail">{window.strings.ML_FileName || "File Name" } </Label>
                 <Input
-                        placeholder={window.strings.ML_search || "File Name"}
+                        placeholder={window.strings.ML_FileName || "File Name"}
                         value={filterParams["upload_name"] || ""}
                         onChange={(e) => handleFilterChange('upload_name', e.target.value)}
                       />
@@ -136,9 +136,9 @@ export default function MediaHeader(props) {
             </Col>
             <Col md={4}>
               <FormGroup> 
-                <Label for="examplePassword">Extention</Label>
+                <Label for="examplePassword">{ window.strings.ML_uploadedBy || "Extention" }</Label>
                 <Input
-                        placeholder={window.strings.ML_search || "Extention"}
+                        placeholder={window.strings.ML_extention || "Extention"}
                         value={filterParams["file_extension"] || ""}
                         onChange={(e) => handleFilterChange('file_extension', e.target.value)}
                       />
@@ -146,9 +146,9 @@ export default function MediaHeader(props) {
             </Col>
             <Col md={4}>
               <FormGroup>
-                <Label for="examplePassword">Uploaded By</Label>
+                <Label for="examplePassword"> { window.strings.ML_uploadedBy || "Uploaded By" }</Label>
                 <Input
-                        placeholder={window.strings.ML_search || "Uploaded By"}
+                        placeholder={window.strings.ML_uploadedBy || "Uploaded By"}
                         value={filterParams["uploader_name"] || ""}
                         onChange={(e) => handleFilterChange('uploader_name', e.target.value)}
                       />
@@ -158,9 +158,9 @@ export default function MediaHeader(props) {
           <Row form>
             <Col md={4}> 
               <FormGroup>
-                <Label for="exampleEmail">Uploader's email</Label>
+                <Label for="exampleEmail">{window.strings.ML_uplodersEmail || "Uploader's email" }</Label>
                 <Input
-                        placeholder={window.strings.ML_search || "Uploader's email"}
+                        placeholder={window.strings.ML_uplodersEmail || "Uploader's email"}
                         value={filterParams["uploader_email"] || ""}
                         onChange={(e) => handleFilterChange('uploader_email', e.target.value)}
                       />
@@ -168,7 +168,7 @@ export default function MediaHeader(props) {
             </Col>
             <Col md={4}>
               <FormGroup>
-                <Label for="examplePassword">Uploaded On</Label>
+                <Label for="examplePassword">{window.strings.ML_uplodedOn || "Uploaded On"}</Label>
                 <DateRange clear={clear} handleDate={handleDate} />
               </FormGroup>
             </Col>

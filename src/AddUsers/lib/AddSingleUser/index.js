@@ -144,7 +144,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
             type="text"
             id="nf-name"
             name="name"
-            placeholder={window.strings.Dashboard_enterName || "Enter Name"}
+            placeholder={window.strings.Dashboard_enterName || 'Enter Name'}
             value={values.name || ''}
             onChange={handleChange}
             className={errors.name ? 'is-invalid' : ''}
@@ -161,7 +161,7 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
             type="email"
             id="nf-email"
             name="email"
-            placeholder={window.strings.Dashboard_enterEmail || "Enter Email"}
+            placeholder={window.strings.Dashboard_enterEmail || 'Enter Email'}
             autoComplete="email"
             value={values.email || ''}
             onChange={handleChange}
@@ -209,7 +209,9 @@ export default function AddSingleUsers({ handleSingleUserAPI }) {
           <Input
             type="password"
             name="password"
-            placeholder={window.strings.Dashboard_enterPassword || ' Enter Password'}
+            placeholder={
+              window.strings.Dashboard_enterPassword || ' Enter Password'
+            }
             disabled={!passwordType}
             value={values.password || ''}
             className={errors.password ? 'is-invalid' : ''}

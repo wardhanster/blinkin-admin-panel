@@ -212,10 +212,10 @@ export default function TableItem(props) {
             <thead>
               <tr>
                 <th className="th_name">{window.strings.ML_name || " Name"}</th>
-                <th>{window.strings.ML_description || " Uploaded By"}</th>
-                <th>{window.strings.ML_type || " Extention"}</th>
+                <th>{window.strings.ML_uploadedBy || " Uploaded By"}</th>
+                <th>{window.strings.ML_extention || " Extention"}</th>
                 <th>{window.strings.ML_size || " Size"}</th>
-                <th>{window.strings.ML_createdAt || " Uploaded At"}</th>
+                <th>{window.strings.ML_uploadedAt|| " Uploaded At"}</th>
                 <th>{window.strings.ML_copy || " Copy"}</th>
               </tr>
             </thead>
