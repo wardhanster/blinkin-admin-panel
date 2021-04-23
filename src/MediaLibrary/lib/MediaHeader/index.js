@@ -119,7 +119,7 @@ export default function MediaHeader(props) {
            </div>
           </Row>
       <Row className="">
-          <div className="ml-3 small col-lg-3 mb-2">
+          <div className="ml-3 small col-lg-4 mb-2">
             <h6 className="d-flex font-weight-bold text-muted">
               {window.strings.ML_FileName || "File Name"}
             </h6>
@@ -149,7 +149,7 @@ export default function MediaHeader(props) {
                         onChange={(e) => handleFilterChange('uploader_name', e.target.value)}
             />
           </div>
-          <div className="ml-3 small col-lg-3 mb-2">
+          <div className="ml-3 small col-lg-4 mb-2">
             <h6 className="d-flex font-weight-bold text-muted">
               {window.strings.ML_uplodersEmail || "Uploader's email"}
             </h6>

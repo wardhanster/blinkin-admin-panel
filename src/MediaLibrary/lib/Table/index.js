@@ -208,30 +208,32 @@ export default function TableItem(props) {
         <Loading />
       ) : (
         <>
-          <Table>
-            <thead>
-              <tr>
-                <th className="th_name">{window.strings.ML_name || " Name"}</th>
-                <th>{window.strings.ML_uploadedBy || " Uploaded By"}</th>
-                <th>{window.strings.ML_extention || " Extention"}</th>
-                <th>{window.strings.ML_size || " Size"}</th>
-                <th>{window.strings.ML_uploadedAt|| " Uploaded At"}</th>
-                <th>{window.strings.ML_copy || " Copy"}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {fileList.length > 0 && (
-                <TableList
-                  icons={icons}
-                  fileList={fileList}
-                  preview={preview}
-                  bytesToSize={bytesToSize}
-                  copyClipBoard={copyClipBoard}
-                  deleteApi={deleteApi}
-                />
-              )}
-            </tbody>
-          </Table>
+         <div className="table-responsive mt-3 mb-3  ">
+            <Table className="table-outline mb-0 d-none d-sm-table table table-hover overflow-auto">
+              <thead className="thead-light text-left">
+                <tr>
+                  <th className="th_name">{window.strings.ML_name || " Name"}</th>
+                  <th>{window.strings.ML_uploadedBy || " Uploaded By"}</th>
+                  <th>{window.strings.ML_extention || " Extention"}</th>
+                  <th>{window.strings.ML_size || " Size"}</th>
+                  <th>{window.strings.ML_uploadedAt|| " Uploaded At"}</th>
+                  <th>{window.strings.ML_copy || " Copy"}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fileList.length > 0 && (
+                  <TableList
+                    icons={icons}
+                    fileList={fileList}
+                    preview={preview}
+                    bytesToSize={bytesToSize}
+                    copyClipBoard={copyClipBoard}
+                    deleteApi={deleteApi}
+                  />
+                )}
+              </tbody>
+            </Table>
+          </div>
           {noResults && (
             <div className="center">
               {window.strings.ML_noResultsFound || "No Results Found"}

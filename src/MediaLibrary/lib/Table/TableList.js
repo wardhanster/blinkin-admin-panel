@@ -36,12 +36,12 @@ export default function TableList(props) {
             className="fa fa-clone copy-icon"
             aria-hidden="true"
           ></i>
-          <button
+          <i
+            title="Delete"
             onClick={() => deleteApi(file)}
-            className="btn btn-link text-danger"
-          >
-            Delete
-          </button>
+            className="fa fa-trash text-danger"
+            aria-hidden="true"
+          ></i>
         </td>
       </tr>
     );
