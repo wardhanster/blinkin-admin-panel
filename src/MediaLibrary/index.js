@@ -97,7 +97,7 @@ export default function MediaFileList(props) {
   };
 
   return (
-    <Container>
+    <Container className="p-3 mt-3 bg-white border">
       <MediaHeader
         defaultTags={tags}
         searchCallback={searchTerms}

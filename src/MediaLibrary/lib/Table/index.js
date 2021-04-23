@@ -43,9 +43,9 @@ export default function TableItem(props) {
   let pageNumRef = useRef(1);
   let searchFirst = useRef(false);
   let [showSnackBar, setShowSnackBar] = useState(false);
-  let [intersect, setIntersect] = useState(false);
 
   const preview = (file, size) => {
+
     file.actualSizeInKb = size;
     file.url = `${baseUrl}${file.file_url}`;
     file.random = Math.random();
@@ -69,10 +69,9 @@ export default function TableItem(props) {
   const callAPI = async (search = null) => {
     setLoading(true);
     let finalResp = await fetchAPI(pageNumRef.current, search);
-    const { records, baseUrl } = finalResp;
+    const { records, base_url: baseUrl } = finalResp;
     const data = records.data;
-    const total = records.total;
-    
+
     try {
       setBaseUrl(baseUrl);
       if (data.length > 0) {
@@ -214,7 +213,7 @@ export default function TableItem(props) {
   };
 
   const getSearchPrams = (searchTerm) => {
-    let queryString;
+    let queryString="";
     if (searchTerm) {
       queryString = Object.keys(searchTerm)
         .filter((key) => searchTerm[key] && searchTerm[key].length !== 0)
