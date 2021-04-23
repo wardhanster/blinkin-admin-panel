@@ -276,16 +276,6 @@ export default function TableItem(props) {
           </div>
         </>
       )}
-
-      {showMoreDataMsg ? (
-        <div className="no_more p-3 border mb-2">
-          <p className="text-muted text-center mb-0">
-            {window.strings.ML_noMoreResults || "No More Results"}
-          </p>
-        </div>
-      ) : (
-        ""
-      )}
       <div>{snackBar(showSnackBar)}</div>
       <div ref={bottomRef}></div>
     </>
