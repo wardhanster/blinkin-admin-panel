@@ -262,7 +262,7 @@ export default function TableItem(props) {
           </div>
           <div className="d-flex justify-content-between">
             <p className="text-left text-muted total_call_font">
-              {window.strings.Dashboard_totalLogs || "Total Records"} :{" "}
+              {window.strings.Dashboard_totalAssets || "Total Records"} :{" "}
               {totalRecords ? totalRecords.total : ""}
             </p>
             <PagesButton
