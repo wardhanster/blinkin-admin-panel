@@ -98,6 +98,7 @@ export default function TableItem(props) {
         }
       } else {
         isApiCallSuccess = false;
+        setTotalRecords(records);
 
         if (!isApiCallSuccess && pageNumRef.current <= 1) {
           setShowMoreDataMsg(false);
@@ -156,6 +157,7 @@ export default function TableItem(props) {
         }
       } else {
         isApiCallSuccess = false;
+        setTotalRecords(records);
 
         if (!isApiCallSuccess && pageNumRef.current <= 1) {
           setShowMoreDataMsg(false);
@@ -243,7 +245,7 @@ export default function TableItem(props) {
                 </tr>
               </thead>
               <tbody>
-                { totalRecords ? totalRecords.data.length !== 0 > 0 && (
+                { totalRecords && totalRecords.data.length !== 0 ? (
                   <TableList
                     icons={icons}
                     fileList={totalRecords.data}
@@ -253,27 +255,28 @@ export default function TableItem(props) {
                     deleteApi={deleteApi}
                   />
                 ) : (
-                  <div className="p-5">
-                    {window.strings.Dashboard_noResultFound || "No Result Found"}
-                  </div>
+                    <tr>
+                     <td style={{textAlign: 'center'}} colspan="6"> {window.strings.Dashboard_noResultFound || "No Result Found"} </td>
+                    </tr>
                 )}
               </tbody>
             </Table>
           </div>
-          <div className="d-flex justify-content-between">
-            <p className="text-left text-muted total_call_font">
-              {window.strings.Dashboard_totalAssets || "Total Records"} :{" "}
-              {totalRecords ? totalRecords.total : ""}
-            </p>
-            <PagesButton
-              data={totalRecords}
-              setData={setFileList}
-              getAPI={callPaginationAPI}
-              loading={loading}
-              setLoading={setLoading}
-              parameters={getSearchPrams(search)}
-            />
-          </div>
+          { totalRecords && totalRecords.data.length !== 0 && <div className="d-flex justify-content-between">
+              <p className="text-left text-muted total_call_font">
+                {window.strings.Dashboard_totalAssets || "Total Records"} :{" "}
+                {totalRecords ? totalRecords.total : ""}
+              </p>
+              <PagesButton
+                data={totalRecords}
+                setData={setFileList}
+                getAPI={callPaginationAPI}
+                loading={loading}
+                setLoading={setLoading}
+                parameters={getSearchPrams(search)}
+              />
+            </div>
+            }
         </>
       )}
       <div>{snackBar(showSnackBar)}</div>
