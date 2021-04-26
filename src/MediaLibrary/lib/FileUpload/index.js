@@ -145,6 +145,7 @@ export default function FileUpload(props) {
   let handleFileTagsDesc = (index, data) => {
     files[index].tags = data.tags;
     files[index].description = data.description;
+    files[index].is_global = data.makePublic;
     setFiles(files);
   };
 
