@@ -252,7 +252,7 @@ export default function FileUploadList(props) {
                     <Label check>
                       <Input checked={makePublic}
                       onChange={(e) => setMakePublic(e.target.checked)} type="checkbox" id="makePublic" />{' '}
-                      {window.strings.ML_makePublic || "Make Public ?"}
+                      {window.strings.ML_makePublic || "Allow others to see ?"}
                     </Label>
                   </FormGroup>
                 </FormGroup>
