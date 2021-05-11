@@ -38,7 +38,7 @@ let video = [
   "video",
 ];
 export default function MediaFileList(props) {
-  const { uploadFiles, fetchAPI, deleteApi, sideModal, toggle, tags, fetchPaginationAPI } = props;
+  const { uploadFiles, fetchAPI, deleteApi, sideModal, toggle, tags, fetchPaginationAPI, RenderPdf } = props;
   let [search, setSearch] = useState(null);
   let [data, setData] = useState(null);
   let [activeModal, setActiveModal] = useState(null);
@@ -113,6 +113,7 @@ export default function MediaFileList(props) {
         loadNewContent={loadNewContent}
         handleClick={handleClick}
         triggerAfterUpload={triggerAfterUpload}
+        RenderPdf={RenderPdf}
       />
       <TableItem
         perPageCount={perPageCount}

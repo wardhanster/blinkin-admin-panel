@@ -18,6 +18,7 @@ export default function RecentCard(props) {
     handleClick,
     triggerAfterUpload,
     tags,
+    RenderPdf
   } = props;
   const handleCardTitleClick = (file) => {
     file.actualSizeInKb = bytesToSize(file.file_size);
@@ -42,6 +43,7 @@ export default function RecentCard(props) {
               bytesToSize={bytesToSize}
               loadNewContent={loadNewContent}
               triggerAfterUpload={triggerAfterUpload}
+              RenderPdf={RenderPdf}
             />
           </Col>
         </Row>

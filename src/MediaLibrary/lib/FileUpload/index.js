@@ -13,6 +13,7 @@ export default function FileUpload(props) {
     loadNewContent,
     tags,
     triggerAfterUpload,
+    RenderPdf
   } = props;
 
   let fileInput = useRef(null);
@@ -46,7 +47,7 @@ export default function FileUpload(props) {
     if (filesList.length <= 0) {
       Swal.fire(
         window.strings.ML_fileformatwarning ||
-          "Note: Only png,jpeg and jpg accepted"
+          "Note: Only png, jpeg, jpg, pdf and mp4 accepted"
       );
       if (append) {
         document.getElementById("preview_fileInput").value = null;
@@ -144,10 +145,11 @@ export default function FileUpload(props) {
   };
 
   let handleFileTagsDesc = (index, data) => {
-    files[index].tags = data.tags;
-    files[index].description = data.description;
-    files[index].is_global = data.makePublic;
-    setFiles(files);
+    const _files = files.slice()
+    _files[index].tags = data.tags;
+    _files[index].description = data.description;
+    _files[index].is_global = data.makePublic;
+    setFiles(_files);
   };
 
   return (
@@ -168,8 +170,10 @@ export default function FileUpload(props) {
               uploadPercentage={uploadPercentage}
               bytesToSize={bytesToSize}
               handleFileTagsDesc={handleFileTagsDesc}
+              acceptFileType={acceptFileType}
               allUploadPercentage={allUploadPercentage}
               uploadFilesFailed={uploadSizeMsg}
+              RenderPdf={RenderPdf}
             />
           )}
         />
