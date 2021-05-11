@@ -7,11 +7,16 @@ import "./date_range.css";
 import moment from "moment";
 // import localization from "moment/locale/de";
 
-function DateRange({ handleDate, clear }) {
+function DateRange({ handleDate, clear, onClear }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [focusedInput, setFocusedInput] = useState(null);
   const handleDatesChange = ({ startDate, endDate }) => {
+    // user cleard the dates
+    if(startDate === null && endDate === null){
+      onClear()
+    }
+
     setStartDate(startDate);
     setEndDate(endDate);
   };
@@ -38,9 +43,7 @@ function DateRange({ handleDate, clear }) {
   };
 
   useEffect(() => {
-    if (clear) {
-      clearBoth();
-    }
+    clearBoth();
   }, [clear]);
 
   return (

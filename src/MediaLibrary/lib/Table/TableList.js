@@ -9,6 +9,8 @@ export default function TableList(props) {
     icons,
     copyClipBoard,
     deleteApi,
+    downloadAsset,
+    baseUrl
   } = props;
 
   return fileList.map((file, index) => {
@@ -39,9 +41,16 @@ export default function TableList(props) {
           <i
             title="Delete"
             onClick={() => deleteApi(file)}
-            className="fa fa-trash text-danger"
+            className="fa fa-trash text-danger action-icon  mr-2"
             aria-hidden="true"
           ></i>
+          <i
+            title="Download"
+            onClick={() => downloadAsset(baseUrl+file.file_url)}
+            className="fa fa-download action-icon"
+            aria-hidden="true"
+          >
+          </i>  
         </td>
       </tr>
     );

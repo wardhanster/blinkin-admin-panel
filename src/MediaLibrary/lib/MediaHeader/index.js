@@ -60,12 +60,16 @@ export default function MediaHeader(props) {
 
   let handleClearSearch = () => {
     setSearchText(null);
+    setClear(!clear);
+    setFilterParams({})
     resetElements(fileTypeRef.current);
     setTagVal([]);
     setFileType([]);
     recentUpdateRef.current = false;
     setClear(true);
     setFilterParams({})
+    setStartDate(null)
+    setEndDate(null)
     clearSearch();
   };
 
@@ -88,6 +92,12 @@ export default function MediaHeader(props) {
       }
     });
   };
+
+  let onClear = () => {
+    setStartDate(null)
+    setEndDate(null)
+    setClear(!clear);
+  }
 
   const handleFilterChange = (key, value) => {
 
@@ -163,7 +173,7 @@ export default function MediaHeader(props) {
             <h6 className="d-flex font-weight-bold text-muted">
               {window.strings.ML_uplodedOn || "Uploaded On"}
             </h6>
-            <DateRange clear={clear} handleDate={handleDate} />
+            <DateRange clear={clear} handleDate={handleDate} onClear={onClear} />
           </div>
           <div className="ml-3 small col-lg-3 mb-2">
             <h6 className="d-flex font-weight-bold text-muted">

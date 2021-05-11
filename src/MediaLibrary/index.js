@@ -38,7 +38,7 @@ let video = [
   "video",
 ];
 export default function MediaFileList(props) {
-  const { uploadFiles, fetchAPI, deleteApi, sideModal, toggle, tags, fetchPaginationAPI, RenderPdf } = props;
+  const { uploadFiles, fetchAPI, deleteApi, sideModal, toggle, tags, fetchPaginationAPI, RenderPdf, downloadAsset } = props;
   let [search, setSearch] = useState(null);
   let [data, setData] = useState(null);
   let [activeModal, setActiveModal] = useState(null);
@@ -119,6 +119,7 @@ export default function MediaFileList(props) {
         perPageCount={perPageCount}
         icons={fontAwesomeIcons}
         baseUrl={baseUrl}
+        downloadAsset={downloadAsset}
         searchClear={searchClear}
         search={search}
         fetchAPI={fetchAPI}

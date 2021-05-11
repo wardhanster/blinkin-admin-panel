@@ -30,6 +30,7 @@ export default function TableItem(props) {
     searchClear,
     perPageCount,
     deleteApi,
+    downloadAsset,
   } = props;
 
   let [activePreviewData, setActivePreviewData] = useState(null);
@@ -247,6 +248,8 @@ export default function TableItem(props) {
               <tbody>
                 { totalRecords && totalRecords.data.length !== 0 ? (
                   <TableList
+                    downloadAsset={downloadAsset}
+                    baseUrl={baseUrl}
                     icons={icons}
                     fileList={totalRecords.data}
                     preview={preview}
