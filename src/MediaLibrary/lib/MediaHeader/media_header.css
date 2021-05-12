@@ -49,3 +49,7 @@
 .search-form {
   width: 100%;
 }
+
+.tags-dropdown-container .rw-multiselect{
+  padding: 0;
+}
