@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function TableList(props) {
   let {
@@ -9,7 +9,7 @@ export default function TableList(props) {
     copyClipBoard,
     deleteApi,
     downloadAsset,
-    baseUrl
+    baseUrl,
   } = props;
 
   return fileList.map((file, index) => {
@@ -45,11 +45,12 @@ export default function TableList(props) {
           ></i>
           <i
             title="Download"
-            onClick={() => downloadAsset(baseUrl+file.file_url)}
+            onClick={() => downloadAsset(baseUrl + file.file_url)}
             className="fa fa-download action-icon"
             aria-hidden="true"
           >
-          </i>  
+            
+          </i>
         </td>
       </tr>
     );
