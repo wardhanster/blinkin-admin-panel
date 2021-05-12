@@ -231,7 +231,7 @@ const Logs = (props) => {
             <h6 className="d-flex font-weight-bold text-muted">
               {window.strings.Dashboard_email || "Email"}
             </h6>
-            <Input
+            <Input 
               type="text"
               placeholder="Email"
               className="d-block"
@@ -371,7 +371,7 @@ const Logs = (props) => {
         ) : null}
         <div className="d-flex justify-content-between">
           <p className="text-left text-muted total_call_font">
-            {window.strings.Dashboard_totalLogs || "Total Logs"} :{" "}
+            {window.strings.Dashboard_totalAssets || "Total Assets"} :{" "}
             {logsData ? logsData.total : ""}
           </p>
           <PagesButton

@@ -158,9 +158,14 @@ export default function FileUploadList(props) {
     }
   } else {
     preview = (
+      <React.Fragment>
       <h5 className="d-flex justify-content-center align-items-center">
-        {window.strings.ML_imageOrVideoPreview || 'File Preview'}
+        {window.strings.ML_imageOrVideoPreview || 'Image/ Video Preview'}
       </h5>
+      <div className="file-preview">
+        <span>{window.strings.ML_imageOrVideoPreviewText || "Click Edit icon to Preview the Image / Video" } </span>
+      </div>
+      </React.Fragment>
     );
   }
 
@@ -181,7 +186,10 @@ export default function FileUploadList(props) {
   let onMakePublicChange = (e, index) => {
     const updatedMakePublic = { ...makePublic, [index]: e.target.checked };
     setMakePublic(updatedMakePublic);
-    handleFileTagsDesc(index, { makePublic: e.target.checked });
+    handleFileTagsDesc(index, { 
+      makePublic: e.target.checked ,
+      tags: files[index].tags,
+      description: files[index].description,});
   };
 
   let handleFileUpload = () => {
@@ -229,7 +237,7 @@ export default function FileUploadList(props) {
     <>
       <Container>
         <Row>
-          <Col xs="4">
+          <Col xs="5">
             {preview}
             {selectFile && (
               <Row form className="desc_tags_container">
@@ -295,7 +303,7 @@ export default function FileUploadList(props) {
               </Row>
             )}
           </Col>
-          <Col xs="8">
+          <Col xs="7">
             {files.length > 0 ? (
               <div className="table-responsive">
                 <Table className="upload-list-container">
@@ -353,14 +361,16 @@ export default function FileUploadList(props) {
                           <td className="size-header">
                             <small>{bytesToSize(file.size)}</small>
                           </td>
-                          <div className="make-public-checkbox">
-                            <Input
-                              checked={makePublic[index] || false}
-                              onChange={(e) => onMakePublicChange(e, index)}
-                              type="checkbox"
-                              id="makePublic"
-                            />
-                          </div>
+                          <td className="size-header">
+                            <div className="make-public-checkbox">
+                              <Input
+                                checked={makePublic[index] || false}
+                                onChange={(e) => onMakePublicChange(e, index)}
+                                type="checkbox"
+                                id="makePublic"
+                              />
+                            </div>
+                          </td>
                           <td className="view-header text-muted">
                             <button
                               className="btn btn-sm btn-primary"

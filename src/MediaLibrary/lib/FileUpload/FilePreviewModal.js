@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { Modal, ModalHeader, ModalBody } from "reactstrap";
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 export default function FilePreviewModal(props) {
   const { className, modalStatus } = props;
@@ -24,7 +24,7 @@ export default function FilePreviewModal(props) {
         backdrop="static"
       >
         <ModalHeader toggle={toggle}>
-          {window.strings.ML_filePreview || "File Preview"}
+          {window.strings.ML_filePreview || 'File Preview'}
         </ModalHeader>
         <ModalBody>{props.render()}</ModalBody>
       </Modal>
