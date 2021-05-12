@@ -229,7 +229,7 @@ export default function FileUploadList(props) {
     <>
       <Container>
         <Row>
-          <Col xs="5">
+          <Col xs="4">
             {preview}
             {selectFile && (
               <Row form className="desc_tags_container">
@@ -295,7 +295,7 @@ export default function FileUploadList(props) {
               </Row>
             )}
           </Col>
-          <Col xs="7">
+          <Col xs="8">
             {files.length > 0 ? (
               <div className="table-responsive">
                 <Table className="upload-list-container">
@@ -313,7 +313,7 @@ export default function FileUploadList(props) {
                       <th scope="col" className="size-header">
                         {window.strings.ML_size || 'Size'}
                       </th>
-                      <th scope="col" className="size-header">
+                      <th scope="col" className="size-header make-public">
                         {window.strings.ML_makePublic || 'Make public ?'}
                       </th>
                       <th scope="col" className="view-header">

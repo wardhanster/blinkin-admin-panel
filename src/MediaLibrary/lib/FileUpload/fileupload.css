@@ -133,3 +133,5 @@
 #makePublic{
   margin-top: 20px;
 }
+
+.make-public { min-width: 130px;}
