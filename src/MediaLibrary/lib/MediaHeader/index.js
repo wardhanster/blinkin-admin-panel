@@ -68,7 +68,6 @@ export default function MediaHeader(props) {
     setTagVal([]);
     setFileType([]);
     recentUpdateRef.current = false;
-    setClear(true);
     setFilterParams({})
     setStartDate(null)
     setEndDate(null)
